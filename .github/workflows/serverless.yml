@@ -1,5 +1,4 @@
 name: Deploy Folloca Web
-
 on:
   push:
     branches: master
@@ -23,9 +22,9 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ap-northeast-2
 
-      - name: Deploy to S3
-        run: aws s3 sync ./${{ secrets.BUILD_DIRECTORY }} ${{ secrets.AWS_S3_BUCKET_NAME }} --acl public-read --delete
-
       - name: Deploy Folloca Web
         run: |
           npm run deploy
+
+      - name: Deploy to S3
+        run: aws s3 sync ./${{ secrets.BUILD_DIRECTORY }} ${{ secrets.AWS_S3_BUCKET_NAME }} --acl public-read --delete
