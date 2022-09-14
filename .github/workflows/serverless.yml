@@ -1,4 +1,5 @@
 name: Deploy Folloca Web
+
 on:
   push:
     branches: master
