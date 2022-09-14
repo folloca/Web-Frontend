@@ -22,6 +22,6 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ap-northeast-2
 
-      - name: Deploy Next.js app
+      - name: Deploy Folloca Web
         run: |
           npm run deploy
