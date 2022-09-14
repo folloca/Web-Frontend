@@ -7,12 +7,13 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "deploy" : "serverless"
+    "deploy": "serverless"
   },
   "dependencies": {
     "next": "12.3.0",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "serverless": "^3.22.0"
   },
   "devDependencies": {
     "@types/node": "18.7.17",
