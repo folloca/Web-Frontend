@@ -1,0 +1,1 @@
+import type { NextPage } from 'next'const Signin: NextPage = () => {    return (        <div>            Signin index page        </div>    )}export default Signin

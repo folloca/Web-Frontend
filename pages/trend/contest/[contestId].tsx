@@ -1,0 +1,1 @@
+import type { NextPage } from 'next'const ContestInfo: NextPage = () => {    return (        <div>            ContestInfo  page        </div>    )}export default ContestInfo

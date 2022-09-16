@@ -1,0 +1,1 @@
+import type { NextPage } from 'next'const MyPage: NextPage = () => {    return (        <div>            MyPage index page        </div>    )}export default MyPage
