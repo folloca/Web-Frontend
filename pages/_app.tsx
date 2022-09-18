@@ -1,5 +1,5 @@
 import type { AppProps } from 'next/app'
-import {useLocationStore} from "../states/zustandTestState";
+import {useLocationStore} from "../src/states/zustandTestState";
 
 function MyApp({ Component, pageProps }: AppProps) {
     const {location} = useLocationStore()
