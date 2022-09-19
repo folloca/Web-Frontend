@@ -1,13 +1,14 @@
-import type { AppProps } from 'next/app'
-import { ThemeProvider } from 'styled-components';
-import { theme } from '../src/config/style/theme';
-import {useLocationStore} from "../src/states/zustandTestState";
+import type {AppProps} from 'next/app'
+import {ThemeProvider} from 'styled-components';
+import {theme} from '../src/config/style/theme';
+import Header from "../src/components/Header";
+import GlobalStyle from '../src/config/style/GlobalStyle'
 
 function MyApp({ Component, pageProps }: AppProps) {
-    const {location} = useLocationStore()
   return (
       <ThemeProvider theme={theme}>
-          {location}
+          <GlobalStyle/>
+          <Header />
         <Component {...pageProps} />
       </ThemeProvider>
   )
