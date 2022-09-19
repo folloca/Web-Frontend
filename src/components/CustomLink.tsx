@@ -1,0 +1,1 @@
+import Link from "next/link";import React, {ReactNode} from "react";interface ICustomLinkProps {    children: ReactNode    url: string    className?: string}const CustomLink = ({children,url,className}:ICustomLinkProps) => {    return (        <Link href={url} ><a className={className}>{children}</a></Link>    )}export default CustomLink;
