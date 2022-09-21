@@ -1,1 +1,29 @@
-import { createGlobalStyle } from "styled-components";const GlobalStyle = createGlobalStyle`  *, *::before, *::after {    box-sizing: border-box;  };  body {    margin: 0;  };  a {    text-decoration:none;    color: ${props=>props.theme.color.shades.BLACK};    font-family: 'Spoqa Han Sans Neo';    font-style: normal;    font-weight: 500;    font-size: 16px;    line-height: 24px;  }  a:hover { color: ${props=>props.theme.color.primary[400]}; }  a:active { color: ${props=>props.theme.color.primary[400]}; }  .Selected {    color: ${props=>props.theme.color.primary[400]};  }`;export default GlobalStyle;
+import { createGlobalStyle } from "styled-components";
+import reset from "styled-reset";
+
+const GlobalStyle = createGlobalStyle`
+  ${reset}
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  ;
+  body {
+    margin: 0;
+  }
+
+  ;
+  a {
+    ${(props) => props.theme.font.spoqaHanSansNeo.medium.paragraph["2"]};
+    text-decoration: none;
+    color: ${(props) => props.theme.color.shades.BLACK};
+    cursor: pointer;
+  }
+
+
+  ${({ theme }) => theme.device.mobile``}
+  ${({ theme }) => theme.device.tablet``}
+
+`;
+
+export default GlobalStyle;
