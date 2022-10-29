@@ -3,38 +3,45 @@ import MProfileImg from "../../public/assets/MProfile.svg";
 import ProfileImg from "../../public/assets/Profile.svg";
 import styled from "styled-components";
 import PopupMenu from "./PopupMenu";
+import useBoolean from "../hooks/useBoolean";
 
 const ProfileButton = () => {
+  const { value: popupBoolean, toggle } = useBoolean();
+
   return (
-    <Wrapper>
-      <ProfileImg className={"NavButton"} />
-      <div className={"MobileNavButton"}>
+    <Wrapper popupBoolean={popupBoolean}>
+      <ProfileImg onClick={toggle} className={"NavButton"} />
+      <div onClick={toggle} className={"MobileNavButton"}>
         <MProfileImg />
         <p>마이</p>
       </div>
-      <PopupMenu />
+      {popupBoolean && <PopupMenu />}
     </Wrapper>
   );
 };
 
-const Wrapper = styled.nav`
+const Wrapper = styled.nav<{ popupBoolean: boolean }>`
   position: relative;
   cursor: pointer;
+
+  svg {
+    path {
+      fill: ${(props) => (props.popupBoolean ? props.theme.color.primary[400] : "")};
+    }
+  }
 
   .MobileNavButton {
     display: none;
   }
 
-  ${({ theme }) => theme.device.mobile`
+  ${({ theme, popupBoolean }) => theme.device.mobile`
     .MobileNavButton {
      display: flex;
      justify-content: center;
      align-items:center;
-/*     color: ${() => theme.color.primary[400]};
-
-    path {
-      fill: ${() => theme.color.primary[400]};
-    }*/
+      p {
+    color: ${popupBoolean ? theme.color.primary[400] : ""};
+  }
     }
     .NavButton {
      display: none;

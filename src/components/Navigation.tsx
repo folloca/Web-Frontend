@@ -3,6 +3,7 @@ import CustomLink from "./CustomLink";
 import SearchImg from "../../public/assets/Search.svg";
 import styled from "styled-components";
 import { useRouter } from "next/router";
+import ProfileButton from "./ProfileButton";
 
 /**
  *@url: 링크 url 주소
@@ -60,7 +61,8 @@ function Navigation() {
 
         return <CustomLink isSelected={isSelected} url={el.url} text={el.text} key={idx} />;
       })}
-      {/*<ProfileButton />*/}
+
+      <ProfileButton />
     </Wrapper>
   );
 }
