@@ -1,18 +1,17 @@
 import Link from "next/link";
-import { useRouter } from "next/router";
 import React, { ReactNode } from "react";
 
 interface ICustomLinkProps {
-  children: ReactNode;
   url: string;
+  isSelected: boolean;
   className?: string;
+  text: ReactNode | string;
 }
 
-const CustomLink = ({ children, url, className }: ICustomLinkProps) => {
-  const router = useRouter();
+const CustomLink = ({ url, text, className, isSelected }: ICustomLinkProps) => {
   return (
     <Link href={url}>
-      <a className={router.pathname.startsWith(url) ? `${className} Selected` : className}>{children}</a>
+      <a className={isSelected ? `${className} Selected` : className}>{text}</a>
     </Link>
   );
 };

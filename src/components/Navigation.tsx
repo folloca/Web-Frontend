@@ -1,8 +1,8 @@
 import React, { ReactNode } from "react";
 import CustomLink from "./CustomLink";
 import SearchImg from "../../public/assets/Search.svg";
-import ProfileImg from "../../public/assets/Profile.svg";
 import styled from "styled-components";
+import { useRouter } from "next/router";
 
 /**
  *@url: 링크 url 주소
@@ -21,7 +21,9 @@ function Navigation() {
     {
       url: "/search",
       isIcon: true,
-      text: <SearchImg />,
+      text: React.useMemo(() => {
+        return <SearchImg />;
+      }, []),
       isMobile: false,
     },
     {
@@ -31,9 +33,15 @@ function Navigation() {
       isMobile: false,
     },
     {
-      url: "/selection",
+      url: "/space",
       isIcon: false,
-      text: "셀렉션",
+      text: "공간",
+      isMobile: false,
+    },
+    {
+      url: "/linking",
+      isIcon: false,
+      text: "링킹",
       isMobile: false,
     },
     {
@@ -42,24 +50,17 @@ function Navigation() {
       text: "ABOUT US",
       isMobile: false,
     },
-    {
-      url: "/signin",
-      isIcon: true,
-      text: <ProfileImg />,
-      isMobile: false,
-    },
   ];
+  const router = useRouter();
+
   return (
     <Wrapper>
       {navs.map((el, idx) => {
-        let child = el.text;
+        const isSelected = router.pathname.startsWith(el.url);
 
-        return (
-          <CustomLink url={el.url} key={idx}>
-            {child}
-          </CustomLink>
-        );
+        return <CustomLink isSelected={isSelected} url={el.url} text={el.text} key={idx} />;
       })}
+      {/*<ProfileButton />*/}
     </Wrapper>
   );
 }
@@ -68,10 +69,13 @@ const Wrapper = styled.nav`
   display: flex;
   align-items: center;
   padding: 0;
-  gap: 72px;
-  width: 527px;
+  gap: 74px;
+  width: 587px;
   height: 32px;
-  justify-content: space-between;
+  //justify-content: space-between;
+  .link {
+    white-space: nowrap;
+  }
 
   .MNavigation {
     display: none;

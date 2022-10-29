@@ -1,19 +1,37 @@
 import React from "react";
 import styled from "styled-components";
 import Logo from "./Logo";
-import Navigation from "./Navigation";
 import CustomLink from "./CustomLink";
-import MobileNavigation from "./MobileNavigation";
+import dynamic from "next/dynamic";
+import { sizes } from "../config/style/mediaTheme";
+
+const DynamicMobileNavigation = dynamic(() => import("./MobileNavigation"));
+
+const DynamicNavigation = dynamic(() => import("./Navigation"));
 
 const Header = () => {
+  const [isMobile, setIsMobile] = React.useState(false);
+
+  const handlerResize = () => {
+    setIsMobile(() => {
+      return window.innerWidth <= sizes.mobile;
+    });
+  };
+
+  React.useEffect(() => {
+    handlerResize();
+    window.addEventListener("resize", handlerResize);
+    return () => {
+      window.removeEventListener("resize", handlerResize);
+    };
+  }, []);
+
   return (
     <Wrapper>
       <Logo />
-      <Navigation />
-      <CustomLink className={"MobileAboutUS"} url={"/aboutus"}>
-        ABOUT US
-      </CustomLink>
-      <MobileNavigation />
+      {!isMobile && <DynamicNavigation />}
+      <CustomLink url={"/aboutus"} text={"ABOUT US"} isSelected={true} className={"MobileAboutUS"} />
+      {isMobile && <DynamicMobileNavigation />}
     </Wrapper>
   );
 };

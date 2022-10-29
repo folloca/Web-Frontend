@@ -4,67 +4,64 @@ import CustomLink from "./CustomLink";
 import MSearchImg from "../../public/assets/MSearch.svg";
 import MLogo from "../../public/assets/MLogo.svg";
 import MSelection from "../../public/assets/MSelection.svg";
-import MProfileImg from "../../public/assets/MProfile.svg";
 import { INav } from "./Navigation";
+import ProfileButton from "./ProfileButton";
+import { useRouter } from "next/router";
 
 const MobileNavigation = () => {
   const navs: INav[] = [
     {
       url: "/search",
       isIcon: true,
-      text: (
-        <div className={"MobileNavButton"}>
-          <MSearchImg />
-          <p>검색</p>
-        </div>
+      text: React.useMemo(
+        () => (
+          <div className={"MobileNavButton"}>
+            <MSearchImg />
+            <p>검색</p>
+          </div>
+        ),
+        [],
       ),
       isMobile: false,
     },
     {
       url: "/trend",
       isIcon: false,
-      text: (
-        <div className={"MobileNavButton"}>
-          <MLogo />
-          <p>트렌드</p>
-        </div>
+      text: React.useMemo(
+        () => (
+          <div className={"MobileNavButton"}>
+            <MLogo />
+            <p>트렌드</p>
+          </div>
+        ),
+        [],
       ),
       isMobile: false,
     },
     {
-      url: "/selection",
+      url: "/space",
       isIcon: false,
-      text: (
-        <div className={"MobileNavButton"}>
-          <MSelection />
-          <p>셀렉션</p>
-        </div>
-      ),
-      isMobile: false,
-    },
-    {
-      url: "/signin",
-      isIcon: true,
-      text: (
-        <div className={"MobileNavButton"}>
-          <MProfileImg />
-          <p>마이</p>
-        </div>
+      text: React.useMemo(
+        () => (
+          <div className={"MobileNavButton"}>
+            <MSelection />
+            공간
+          </div>
+        ),
+        [],
       ),
       isMobile: false,
     },
   ];
+  const router = useRouter();
+
   return (
     <Wrapper>
       {navs.map((el, idx) => {
-        let child = el.text;
-
-        return (
-          <CustomLink url={el.url} key={idx}>
-            {child}
-          </CustomLink>
-        );
+        const isSelected = router.pathname.startsWith(el.url);
+        return <CustomLink url={el.url} text={el.text} isSelected={isSelected} key={idx} />;
       })}
+      <ProfileButton />
     </Wrapper>
   );
 };

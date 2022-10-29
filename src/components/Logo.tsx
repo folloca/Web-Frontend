@@ -1,13 +1,11 @@
 import React from "react";
-import CustomLink from "./CustomLink";
 import LogoImg from "../../public/assets/Logo.svg";
+import CustomLink from "./CustomLink";
 
 function Logo() {
-  return (
-    <CustomLink url={"/"} className={"Logo"}>
-      <LogoImg />
-    </CustomLink>
-  );
+  const memoLogo = React.useMemo(() => <LogoImg />, []);
+
+  return <CustomLink url={"/"} text={memoLogo} isSelected={false} className={"Logo"}></CustomLink>;
 }
 
 export default React.memo(Logo);
