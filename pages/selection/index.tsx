@@ -1,0 +1,1 @@
+import type { NextPage } from 'next'const Selection: NextPage = () => {    return (        <div>            Selection index page        </div>    )}export default Selection

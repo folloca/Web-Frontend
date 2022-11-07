@@ -1,11 +1,11 @@
-import type { NextPage } from 'next'
+import type {NextPage} from 'next'
 
 const Home: NextPage = () => {
-  return (
-    <div>
-      Folloca Web
-    </div>
-  )
+    return (
+        <div>
+            Folloca Web
+        </div>
+    )
 }
 
 export default Home

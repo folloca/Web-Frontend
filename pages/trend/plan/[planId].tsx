@@ -1,0 +1,1 @@
+import type { NextPage } from 'next'const PlanInfo: NextPage = () => {    return (        <div>            PlanInfo  page        </div>    )}export default PlanInfo
