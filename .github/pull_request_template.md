@@ -1,12 +1,16 @@
 > ## Summary
-- PR 요약 내용
-> ## Describe your changes
-- 무슨 이유로 코드를 변경했는지
+- PR 요약 한 줄
+
+> ## Description of your changes
+example
+- 작업 완료 사항
+- 무슨 이유로 코드를 어떻게 작성/변경했는지
 - 어떤 위험이나 장애가 발견되었는지
-- 어떤 부분에 리뷰어가 집중하면 좋을지
-- 관련 스크린샷
-- 테스트 계획 또는 완료 사항
+- 리뷰어가 어떤 부분에 집중하면 좋을지
+- 필요 시 관련 링크, 스크린샷 또는 gif 등 자유롭게 첨부
+
 > ## Issue number and link
 #이슈번호
-> ## Merge 진행 또는 Pull 받는 팀원들이 주의해야 할 사항
-npm install & pip install 
+
+> ## Notice for the team
+ex) npm install
