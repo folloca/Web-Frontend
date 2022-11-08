@@ -2,7 +2,7 @@
 - PR 요약 한 줄
 
 > ## Description of your changes
-example
+guide
 - 작업 완료 사항
 - 무슨 이유로 코드를 어떻게 작성/변경했는지
 - 어떤 위험이나 장애가 발견되었는지
