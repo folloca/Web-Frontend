@@ -7,6 +7,16 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
 const nextConfig = withBundleAnalyzer({
   reactStrictMode: true,
   swcMinify: true,
+  async redirects() {
+    return [
+      {
+        source: "/",
+        destination: "/trend",
+        basePath: false,
+        permanent: false,
+      },
+    ];
+  },
   compiler: {
     // see https://styled-components.com/docs/tooling#babel-plugin for more info on the options.
     styledComponents: {
