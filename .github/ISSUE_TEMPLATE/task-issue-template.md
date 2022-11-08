@@ -1,7 +1,7 @@
 ---
 name: Task issue template
-about: task issue
-title: "[page name] work summary"
+about: Create a issue before working on a task
+title: "[page or component name] work summary"
 labels: ''
 assignees: ''
 
@@ -9,11 +9,11 @@ assignees: ''
 
 > ## Description
 
-> ### DUE DATE
-0000.00.00
+> ## Due Date
+`0000.00.00`
 
 > ## TODO
-- [ ] ex1
-- [ ] ex2
+- [ ] task1
+- [ ] task2
 
 > ## ETC
