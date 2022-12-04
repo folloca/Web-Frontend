@@ -5,18 +5,35 @@ import PopularSymbol from "../../public/assets/Popular.svg";
 import MPopularSymbol from "../../public/assets/MPopular.svg";
 import { font } from "../config/style/fontTheme";
 import Image from "next/image";
+import { useRouter } from "next/router";
 
-function Card() {
+interface ICardProps {
+  id: string;
+  title: string;
+  thumbnail: string;
+  description: string;
+  tags: string[];
+}
+
+function Card({ id, title, thumbnail, description, tags }: ICardProps) {
+  const router = useRouter();
+  const handleMovePlan = React.useCallback(async () => {
+    await router.push({
+      pathname: "/trend/plan/[planId]",
+      query: { planId: id },
+    });
+  }, [id]);
+
   return (
-    <Wrapper>
+    <Wrapper onClick={handleMovePlan}>
       <CardTitleWrapper>
-        <GridTitle text={<div>제목</div>} padding={"8px 0 2px 16px"} />
+        <GridTitle text={<div>{title}</div>} padding={"8px 0 2px 16px"} />
         <PopularSymbol />
       </CardTitleWrapper>
 
       <ContentsWrapper>
         <ImageContainer>
-          <Image layout="fill" objectFit={"cover"} src={"/assets/CardInitailImage.png"} />
+          <Image layout="fill" objectFit={"cover"} src={thumbnail} />
         </ImageContainer>
         <div className={"half"}>
           <MCardTitleWrapper>
@@ -24,15 +41,15 @@ function Card() {
               font={font.spoqaHanSansNeo.bold.paragraph["3"]}
               text={
                 <div style={{ width: "100%" }}>
-                  제목 <MPopularSymbol />
+                  {title} <MPopularSymbol />
                 </div>
               }
               padding={"8px 0 2px 16px"}
             />
           </MCardTitleWrapper>
           <DescriptionWrapper>
-            <p className={"description"}>egeragegeageageageargergageagregeragㅅ곳곡소고</p>
-            <p className={"tags"}>태그</p>
+            <p className={"description"}>{description}</p>
+            <p className={"tags"}>{tags.join()}</p>
           </DescriptionWrapper>
         </div>
       </ContentsWrapper>
@@ -43,6 +60,7 @@ function Card() {
 const Wrapper = styled.div`
   width: 417px;
   height: 240px;
+  cursor: pointer;
 
   ${({ theme }) => theme.device.desktop`
         width: 430px;
@@ -110,12 +128,16 @@ const ContentsWrapper = styled.div`
 
   & .half {
     width: 54%;
+
+    padding-left: 14px;
   }
 
   ${({ theme }) => theme.device.mobile`
         border-width: 0px;
-        gap: 14px;
         height: 100%;
+        & .half {
+          padding-left: 14px;
+        }
   `}
 `;
 
@@ -125,6 +147,8 @@ const ImageContainer = styled.div`
   overflow: hidden;
   ${({ theme }) => theme.device.mobile`
         border-radius: 4px 0 0 4px;
+        width: 140px;
+        height:140px;
   `}
 `;
 
@@ -146,6 +170,27 @@ const DescriptionWrapper = styled.div`
     ${({ theme }) => theme.font.spoqaHanSansNeo.medium.caption["1"]}
     color: #828282;
   }
+
+  ${({ theme }) => theme.device.mobile`
+        flex-direction: column-reverse;
+        & .description {
+            font-family: 'Spoqa Han Sans Neo Medium';
+            font-style: normal;
+            font-weight: 500;
+            font-size: 11px;
+            line-height: 18px;
+            color: #747679;
+            
+            border-top: 0.75px solid #EEEEEE;
+        }
+        
+        & .tags {
+            font-family: 'Spoqa Han Sans Neo';
+            font-style: normal;
+            font-weight: 500;
+            font-size: 11px;
+            line-height: 16px;
+  `}
 `;
 
 export default Card;

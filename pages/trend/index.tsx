@@ -2,6 +2,44 @@ import type { NextPage } from "next";
 import Card from "../../src/components/Card";
 import styled from "styled-components";
 
+const CardMockData = [
+  {
+    id: Math.random().toString(36).substring(2, 12),
+    title: "노티드 X 상상마당",
+    thumbnail: "/assets/CardInitailImage.png",
+    description: "가구와 와플, 의외의 만남을 성수에서 만나보아요",
+    tags: ["가구와와플조합", "데이트코스", "팝업"],
+  },
+  {
+    id: Math.random().toString(36).substring(2, 12),
+    title: "노티드 X 상상마당",
+    thumbnail: "/assets/CardInitailImage.png",
+    description: "가구와 와플, 의외의 만남을 성수에서 만나보아요",
+    tags: ["가구와와플조합", "데이트코스", "팝업"],
+  },
+  {
+    id: Math.random().toString(36).substring(2, 12),
+    title: "노티드 X 상상마당",
+    thumbnail: "/assets/CardInitailImage.png",
+    description: "가구와 와플, 의외의 만남을 성수에서 만나보아요",
+    tags: ["가구와와플조합", "데이트코스", "팝업"],
+  },
+  {
+    id: Math.random().toString(36).substring(2, 12),
+    title: "노티드 X 상상마당",
+    thumbnail: "/assets/CardInitailImage.png",
+    description: "가구와 와플, 의외의 만남을 성수에서 만나보아요",
+    tags: ["가구와와플조합", "데이트코스", "팝업"],
+  },
+  {
+    id: Math.random().toString(36).substring(2, 12),
+    title: "노티드 X 상상마당",
+    thumbnail: "/assets/CardInitailImage.png",
+    description: "가구와 와플, 의외의 만남을 성수에서 만나보아요",
+    tags: ["가구와와플조합", "데이트코스", "팝업"],
+  },
+];
+
 const Trend: NextPage = () => {
   return (
     <Wrapper>
@@ -11,11 +49,16 @@ const Trend: NextPage = () => {
       <article>
         <section>
           <CardContainer>
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
+            {CardMockData.map((data) => (
+              <Card
+                id={data.id}
+                title={data.title}
+                thumbnail={data.thumbnail}
+                description={data.description}
+                tags={data.tags}
+                key={data.id}
+              />
+            ))}
           </CardContainer>
         </section>
         <section className={"popular"}>인기공간</section>
