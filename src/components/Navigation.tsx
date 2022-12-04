@@ -72,7 +72,7 @@ const Wrapper = styled.nav`
   align-items: center;
   padding: 0;
   gap: 74px;
-  width: 587px;
+  width: auto;
   height: 32px;
   //justify-content: space-between;
   .link {
