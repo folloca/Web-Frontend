@@ -23,6 +23,11 @@ const Signin: NextPage = () => {
         </span>
         <CustomLink url={"/findpw"} text={"비밀번호 찾기"} className={"text"} />
       </Wrapper>
+      <DividerWrapper>
+        <hr className={"divider"} />
+        <span>or</span>
+        <hr className={"divider"} />
+      </DividerWrapper>
     </UserLayout>
   );
 };
@@ -56,6 +61,24 @@ const Wrapper = styled.div`
     display: flex;
     align-items: center;
     cursor: pointer;
+  }
+`;
+
+const DividerWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  font-family: "Spoqa Han Sans Neo";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 16px;
+  text-align: center;
+  color: ${({ theme }) => theme.color.primary[400]};
+  margin-top: 41px;
+
+  hr {
+    width: 100%;
+    border: 1px solid ${({ theme }) => theme.color.primary[400]};
   }
 `;
 
