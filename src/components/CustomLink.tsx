@@ -3,7 +3,7 @@ import React, { ReactNode } from "react";
 
 interface ICustomLinkProps {
   url: string;
-  isSelected: boolean;
+  isSelected?: boolean;
   className?: string;
   text: ReactNode | string;
 }

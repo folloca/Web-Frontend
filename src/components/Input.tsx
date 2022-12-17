@@ -1,19 +1,24 @@
 import styled from "styled-components";
 
-const Input = ({ placeholder }: { placeholder: string }) => {
-  return (
-    <div>
-      <StyledInput placeholder={placeholder} />
-    </div>
-  );
+const Input = ({
+  width,
+  placeholder,
+  value,
+  onChange,
+}: {
+  width: string;
+  placeholder: string;
+  value?: string;
+  onChange?: () => void;
+}) => {
+  return <StyledInput width={width} placeholder={placeholder} />;
 };
 
 const StyledInput = styled.input`
-  width: 418px;
-  //width: 100%;
+  width: ${(props) => props.width};
   height: 40px;
-  border: 1px solid #047fff;
-  padding: 8px;
+  border: 1px solid ${({ theme }) => theme.color.primary[400]};
+  padding: 8px 16px;
 
   :focus {
     outline: none;
@@ -26,11 +31,8 @@ const StyledInput = styled.input`
     font-weight: 500;
     font-size: 16px;
     line-height: 24px;
-    /* identical to box height, or 150% */
 
-    /* WEB/Neutral/400 */
-
-    color: #828282;
+    color: ${({ theme }) => theme.color.neutral[400]};
   }
 `;
 
