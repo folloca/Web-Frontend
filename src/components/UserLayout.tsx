@@ -8,34 +8,47 @@ type AppLayoutProps = {
 export default function UserLayout({ children, title }: AppLayoutProps) {
   return (
     <Container>
-      <TitleContainer>
-        <Image src={"/assets/Logo.svg"} width={230} height={48} alt={"logo image"} />
+      <Wrapper>
+        <span className={"logo__wrapper"}>
+          <Image
+            src={"/assets/Logo.svg"}
+            className={"logo_img"}
+            layout={"fixed"}
+            width={"230px"}
+            height={"48px"}
+            alt={"logo image"}
+          />
+        </span>
         <h2>{title}</h2>
-      </TitleContainer>
-      {children}
+        {children}
+      </Wrapper>
     </Container>
   );
 }
 
 const Container = styled.div`
-  display: flex;
   width: 100%;
+  height: 100%;
+  display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  margin: 0 auto;
   padding: 72px 0 0 0;
 `;
 
-const TitleContainer = styled.div`
+const Wrapper = styled.div`
+  margin: 0 auto;
+
+  .logo__wrapper {
+    margin-left: 8px;
+  }
+
   h2 {
+    margin-top: 8px;
     font-family: "Spoqa Han Sans Neo";
     font-style: normal;
     font-weight: 500;
     font-size: 24px;
     line-height: 32px;
-
-    display: flex;
-    align-items: flex-end;
 
     margin-bottom: 48px;
 

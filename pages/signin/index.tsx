@@ -7,7 +7,7 @@ import UserLayout from "../../src/components/UserLayout";
 const Signin: NextPage = () => {
   return (
     <UserLayout title={"함께 만들어가는 공간 기획 플랫폼"}>
-      <Input />
+      <Input placeholder={"아이디(이메일)를 입력해주세요"} />
     </UserLayout>
   );
 };
