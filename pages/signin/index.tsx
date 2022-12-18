@@ -1,13 +1,12 @@
 import type { NextPage } from "next";
 import styled from "styled-components";
 import Input from "../../src/components/Input";
-import Logo from "../../public/assets/Logo.svg";
-import Image from "next/image";
 import UserLayout from "../../src/components/UserLayout";
-import ProfileButton from "../../src/components/ProfileButton";
 import Button from "../../src/components/Button";
 import RoundCheckBox from "../../src/components/RoundCheckBox";
 import CustomLink from "../../src/components/CustomLink";
+import { theme } from "../../src/config/style/theme";
+
 const Signin: NextPage = () => {
   return (
     <UserLayout title={"함께 만들어가는 공간 기획 플랫폼"}>
@@ -28,6 +27,12 @@ const Signin: NextPage = () => {
         <span>or</span>
         <hr className={"divider"} />
       </DividerWrapper>
+      <SocialLoginWrapper>
+        <button>카카오로 로그인</button>
+        <button>구글로 로그인</button>
+        <span className={"large_text"}>혹시 오늘 폴로카가 처음이신가요?</span>
+        <CustomLink url={"/singup"} text={"회원가입 하러가기 ->"} className={"link"} />
+      </SocialLoginWrapper>
     </UserLayout>
   );
 };
@@ -70,8 +75,8 @@ const DividerWrapper = styled.div`
   font-family: "Spoqa Han Sans Neo";
   font-style: normal;
   font-weight: 500;
-  font-size: 10px;
-  line-height: 16px;
+  font-size: 16px;
+  line-height: 24px;
   text-align: center;
   color: ${({ theme }) => theme.color.primary[400]};
   margin-top: 41px;
@@ -79,6 +84,38 @@ const DividerWrapper = styled.div`
   hr {
     width: 100%;
     border: 1px solid ${({ theme }) => theme.color.primary[400]};
+  }
+`;
+
+const SocialLoginWrapper = styled.div`
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-family: "Spoqa Han Sans Neo";
+  font-style: normal;
+
+  button {
+    :first-child {
+      margin-bottom: 16px;
+    }
+  }
+
+  .large_text {
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 30px;
+    letter-spacing: 0.01em;
+    color: #000000;
+    margin-top: 32px;
+  }
+
+  .link {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 24px;
+    color: ${({ theme }) => theme.color.primary[400]};
+    margin-top: 8px;
   }
 `;
 
