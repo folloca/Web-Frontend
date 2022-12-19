@@ -32,7 +32,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   margin: 0 auto;
-  padding: 72px 0 0 0;
+  padding: 72px 0 96px 0;
 `;
 
 const Wrapper = styled.div`

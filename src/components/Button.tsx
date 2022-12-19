@@ -1,8 +1,19 @@
 import styled from "styled-components";
+import { theme } from "../config/style/theme";
 
-const Button = ({ contents, onClick, width }: { contents: string; onClick?: () => void; width?: string }) => {
+const Button = ({
+  contents,
+  onClick,
+  width,
+  color = theme.color.primary[400],
+}: {
+  contents: string;
+  onClick?: () => void;
+  width?: string;
+  color?: string;
+}) => {
   return (
-    <StyledButton style={{ width: width }} onClick={() => onClick}>
+    <StyledButton style={{ width: width }} color={color} onClick={() => onClick}>
       {contents}
     </StyledButton>
   );
@@ -10,11 +21,11 @@ const Button = ({ contents, onClick, width }: { contents: string; onClick?: () =
 
 const StyledButton = styled.button`
   height: 40px;
-  border: 1px solid ${({ theme }) => theme.color.primary[400]};
+  border: 1px solid ${(props) => props.color};
   display: flex;
   justify-content: center;
   align-items: center;
-  background: ${({ theme }) => theme.color.primary[400]};
+  background: ${(props) => props.color};
   font-family: "Spoqa Han Sans Neo";
   font-style: normal;
   font-weight: 500;
