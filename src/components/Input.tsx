@@ -3,15 +3,17 @@ import styled from "styled-components";
 const Input = ({
   width,
   placeholder,
+  readOnly,
   value,
   onChange,
 }: {
   width: string;
   placeholder: string;
+  readOnly?: boolean;
   value?: string;
   onChange?: () => void;
 }) => {
-  return <StyledInput width={width} placeholder={placeholder} />;
+  return <StyledInput width={width} placeholder={placeholder} readOnly={readOnly} />;
 };
 
 const StyledInput = styled.input`

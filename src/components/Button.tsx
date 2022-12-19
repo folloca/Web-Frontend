@@ -1,7 +1,11 @@
 import styled from "styled-components";
 
-const Button = ({ contents, onClick }: { contents: string; onClick?: () => void }) => {
-  return <StyledButton onClick={onClick}>{contents}</StyledButton>;
+const Button = ({ contents, onClick, width }: { contents: string; onClick?: () => void; width?: string }) => {
+  return (
+    <StyledButton style={{ width: width }} onClick={() => onClick}>
+      {contents}
+    </StyledButton>
+  );
 };
 
 const StyledButton = styled.button`
@@ -18,6 +22,7 @@ const StyledButton = styled.button`
   line-height: 24px;
   text-align: center;
   color: ${({ theme }) => theme.color.shades.WHITE};
+  cursor: pointer;
 `;
 
 export default Button;
