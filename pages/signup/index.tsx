@@ -12,7 +12,7 @@ const SignUp: NextPage = () => {
   const [isSend, setIsSend] = React.useState(false);
   const [isVerify, setIsVerify] = React.useState(false);
   const [authenticationNum, setAuthenticationNum] = React.useState("");
-
+  const [isToggleOpen, setIsToggleOpen] = React.useState(false);
   const handleVerify = () => {
     setIsSend(true);
   };
@@ -72,8 +72,21 @@ const SignUp: NextPage = () => {
             <span className={"small_text"}>
               <span className={"green_text"}>(필수)</span> 서비스 이용약관에 동의
             </span>
-            <span className={"gray_text"}>보기</span>
+            <span className={"gray_text"} onClick={() => setIsToggleOpen(!isToggleOpen)}>
+              {isToggleOpen ? "접기" : "보기"}
+            </span>
           </div>
+          {isToggleOpen && (
+            <div className={"toggle_box"}>
+              총칙 <br /> <br />
+              제1조 [목적] <br />
+              가진 용감하고 없으면 모래뿐일 할지니, 설레는 같은 풀이 싶이 봄바람이다. 낙원을 것이 있 뜨고, 곳으로
+              봄바람이다. 귀는 같이, 위하여서, 같지 얼마나 힘차게 피에 사막이다. 얼마나 새 얼음이 고행을 목숨을 대한
+              이것이야말로 있는가? 같으며, 이는 거친 있는가? 사랑의 품었기 싹이 뿐이다. 능히 청춘의 든 같은 얼음 예가
+              피고 있음으로써 소금이라 끓는다. 그들에게 피고, 끓는 그들은 웅대한 봄바람을 거선의 무엇이 바. 제2조 [정의]
+              이 페이지는 서비스 이용약관 관련 내용입니다.
+            </div>
+          )}
           <div className={"check_box"}>
             <LargeRoundCheckBox />
             <span className={"small_text"}>
@@ -145,6 +158,26 @@ const InputContainer = styled.div`
     align-items: center;
     flex-wrap: wrap;
     gap: 8px;
+  }
+
+  .toggle_box {
+    width: 100%;
+    height: 124px;
+    padding: 16px;
+    overflow-y: scroll;
+    background-color: ${({ theme }) => theme.color.neutral[50]};
+    font-family: "Spoqa Han Sans Neo";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+    color: ${({ theme }) => theme.color.shades[100]};
+
+    -ms-overflow-style: none;
+  }
+
+  .toggle_box::-webkit-scrollbar {
+    display: none;
   }
 
   .border_box {
