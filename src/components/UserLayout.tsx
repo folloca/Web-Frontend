@@ -4,8 +4,9 @@ import Image from "next/image";
 type AppLayoutProps = {
   children: React.ReactNode;
   title: string;
+  name?: string;
 };
-export default function UserLayout({ children, title }: AppLayoutProps) {
+export default function UserLayout({ children, title, name }: AppLayoutProps) {
   return (
     <Container>
       <Wrapper>
@@ -19,7 +20,14 @@ export default function UserLayout({ children, title }: AppLayoutProps) {
             alt={"logo image"}
           />
         </span>
-        <h2>{title}</h2>
+        <h2>
+          {title}
+          {name && (
+            <>
+              <span className={"primary_text"}>{name}</span>님
+            </>
+          )}
+        </h2>
         {children}
       </Wrapper>
     </Container>
@@ -53,5 +61,9 @@ const Wrapper = styled.div`
     margin-bottom: 48px;
 
     color: #000000;
+  }
+
+  .primary_text {
+    color: ${({ theme }) => theme.color.primary[400]};
   }
 `;
