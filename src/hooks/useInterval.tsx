@@ -1,7 +1,11 @@
 import React from "react";
 
-function useInterval(callback: () => void, delay: number) {
+function useInterval(callback: () => void, delay: number, refresh: number) {
   const savedCallback = React.useRef(callback);
+  const intervalId = React.useRef<NodeJS.Timer>();
+
+  const clear = React.useCallback(() => clearInterval(intervalId.current), []);
+
   React.useEffect(() => {
     savedCallback.current = callback;
   }, [callback]);
@@ -13,11 +17,16 @@ function useInterval(callback: () => void, delay: number) {
       }
     }
 
-    if (delay !== null) {
-      let id = setInterval(tick, delay);
-      return () => clearInterval(id);
+    if (intervalId.current) {
+      clear();
     }
-  }, [delay]);
+
+    if (delay !== null) {
+      intervalId.current = setInterval(tick, delay);
+    }
+
+    return clear;
+  }, [delay, refresh]);
 }
 
 export default useInterval;
