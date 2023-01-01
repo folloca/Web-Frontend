@@ -10,7 +10,7 @@ interface ICustomLinkProps {
 
 const CustomLink = ({ url, text, className, isSelected }: ICustomLinkProps) => {
   return (
-    <Link href={url}>
+    <Link legacyBehavior href={url}>
       <a className={isSelected ? `${className} Selected` : className}>{text}</a>
     </Link>
   );

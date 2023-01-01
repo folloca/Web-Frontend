@@ -33,7 +33,7 @@ function Card({ id, title, thumbnail, description, tags }: ICardProps) {
 
       <ContentsWrapper>
         <ImageContainer>
-          <Image layout="fill" objectFit={"cover"} src={thumbnail} />
+          <Image layout="fill" objectFit={"cover"} src={thumbnail} alt={"thumbnailImage"} />
         </ImageContainer>
         <div className={"half"}>
           <MCardTitleWrapper>
