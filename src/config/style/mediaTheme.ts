@@ -9,7 +9,7 @@ type MediaQueryProps = {
 export const sizes: MediaQueryProps = {
   mobile: 719,
   tablet: 1023,
-  desktop: 1024,
+  desktop: 1440,
 };
 
 // // Iterate through the sizes and create a media template
