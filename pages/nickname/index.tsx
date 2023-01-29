@@ -14,6 +14,7 @@ const Nickname: NextPage = () => {
       <Wrapper>
         <NicknameInput placeholder={"닉네임을 입력해주세요"} />
         <Button contents={"확인"} />
+        <div className="gray__text">나중에 개인설정 페이지에서 고칠 수 있어요.</div>
       </Wrapper>
     </UserLayout>
   );
@@ -25,6 +26,18 @@ const Wrapper = styled.div`
   flex-wrap: wrap;
   gap: 16px;
   padding-top: 52px;
+
+  .gray__text {
+    margin-top: 25.25rem;
+    margin-bottom: 5rem;
+
+    font-family: "Spoqa Han Sans Neo";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    color: #747679;
+  }
 `;
 
 export default Nickname;

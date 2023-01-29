@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import DiceImg from "../../public/assets/Dice-icon.svg";
 import Image from "next/image";
+import React from "react";
 
 const NicknameInput = ({
   placeholder,
@@ -13,11 +14,22 @@ const NicknameInput = ({
   value?: string;
   onChange?: () => void;
 }) => {
+  const [isAvailable, setIsAvailable] = React.useState(true);
+
   return (
-    <Wrapper>
-      <StyledInput placeholder={placeholder} readOnly={readOnly} />
-      <DiceImg className="icon" />
-    </Wrapper>
+    <>
+      <AlertWrapper>
+        {isAvailable ? (
+          <span className="blue__text">사용 가능한 닉네임이에요.</span>
+        ) : (
+          <span className="red__text">이미 사용중인 닉네임이에요.</span>
+        )}
+      </AlertWrapper>
+      <Wrapper>
+        <StyledInput placeholder={placeholder} readOnly={readOnly} />
+        <DiceImg className="icon" />
+      </Wrapper>
+    </>
   );
 };
 
@@ -51,6 +63,23 @@ const StyledInput = styled.input`
 
   ::placeholder,
   ::-webkit-input-placeholder :-ms-input-placeholder {
+    color: ${({ theme }) => theme.color.primary[400]};
+  }
+`;
+
+const AlertWrapper = styled.div`
+  font-family: "Spoqa Han Sans Neo";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  margin-bottom: -8px;
+
+  .red__text {
+    color: ${({ theme }) => theme.color.error};
+  }
+
+  .blue__text {
     color: ${({ theme }) => theme.color.primary[400]};
   }
 `;
