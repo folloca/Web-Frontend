@@ -1,11 +1,20 @@
 import React from "react";
 import styled from "styled-components";
+import { useRouter } from "next/router";
 
 function SpaceCard() {
+  const router = useRouter();
+
+  const handleMovePlan = React.useCallback(async () => {
+    await router.push({
+      pathname: "/space/plans/[...slug]",
+      query: { slug: ["#핵심키워드 #공간이름은여기에", Math.random().toString(36).substring(2, 12)] },
+    });
+  }, []);
   return (
     <Wrapper>
       <TitleSection>
-        <p>#핵심키워드 #공간이름은여기에</p>
+        <p onClick={handleMovePlan}>#핵심키워드 #공간이름은여기에</p>
         <div>
           <span className="space-status ongoing">진행중</span> | 7.14 마감 | 팝업
         </div>
@@ -36,6 +45,7 @@ const TitleSection = styled.div`
     font-weight: 500;
     font-size: 24px;
     line-height: 32px;
+    cursor: pointer;
   }
 
   .space-status.ongoing {

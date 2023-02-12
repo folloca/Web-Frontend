@@ -4,6 +4,7 @@ import React from "react";
 import CardContainer from "../../src/containers/CardContainer";
 import BannerContainer from "../../src/containers/BannerContainer";
 import GridTitle from "../../src/components/GridTitle";
+import SpaceCard from "../../src/components/SpaceCard";
 
 const Trend: NextPage = () => {
   return (
@@ -18,14 +19,22 @@ const Trend: NextPage = () => {
         </section>
         <section className={"popular"}>
           <GridTitle text={<div>지금 뜨는 공간</div>} padding={"8px 0 2px 16px"} />
-          <PlaceCard></PlaceCard>
+          <Spaces>
+            <SpaceCard />
+            <SpaceCard />
+            <SpaceCard />
+            <SpaceCard />
+            <SpaceCard />
+            <SpaceCard />
+            <SpaceCard />
+          </Spaces>
         </section>
       </article>
     </Wrapper>
   );
 };
 
-const PlaceCard = styled.div`
+const Spaces = styled.div`
   width: 417px;
   height: 176px;
 
