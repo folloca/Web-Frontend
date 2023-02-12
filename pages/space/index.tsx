@@ -1,11 +1,24 @@
 import type { NextPage } from "next";
 import BannerContainer from "../../src/containers/BannerContainer";
 import React from "react";
+import Select from "react-select";
 import GridTitle from "../../src/components/GridTitle";
 import styled from "styled-components";
 import CreateSpaceCard from "../../src/components/CreateSpaceCard";
 import SpaceCard from "../../src/components/SpaceCard";
 
+const options1 = [
+  { value: "전체", label: "전체" },
+  { value: "진행", label: "진행" },
+  { value: "마감", label: "마감" },
+];
+
+const options2 = [
+  { value: "트렌드순", label: "트렌드순" },
+  { value: "기획 참여순", label: "기획 참여순" },
+  { value: "최신순", label: "최신순" },
+  { value: "오래된순", label: "오래된순" },
+];
 const Space: NextPage = () => {
   return (
     <Wrapper>
@@ -19,6 +32,14 @@ const Space: NextPage = () => {
       </HeadSection>
       <Grid>
         <div>플로카에 참여한 공간</div>
+        <div className="space-filter-select-container">
+          <div style={{ width: "120px" }}>
+            <Select menuPlacement="auto" menuPosition="fixed" options={options1} defaultValue={options1[0]} />
+          </div>
+          <div style={{ width: "120px" }}>
+            <Select menuPlacement="auto" menuPosition="fixed" options={options2} defaultValue={options2[1]} />
+          </div>
+        </div>
       </Grid>
       <SpaceSection>
         <CreateSpaceCard />
@@ -66,9 +87,8 @@ const Grid = styled.div`
   padding: 8px 0 0 16px;
 
   & .space-filter-select-container {
-    select {
-      margin-left: 24px;
-    }
+    display: flex;
+    gap: 24px;
   }
 `;
 
