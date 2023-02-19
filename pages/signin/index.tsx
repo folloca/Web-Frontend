@@ -5,7 +5,6 @@ import UserLayout from "../../src/components/UserLayout";
 import Button from "../../src/components/Button";
 import RoundCheckBox from "../../src/components/RoundCheckBox";
 import CustomLink from "../../src/components/CustomLink";
-import { theme } from "../../src/config/style/theme";
 
 const Signin: NextPage = () => {
   return (
@@ -31,7 +30,7 @@ const Signin: NextPage = () => {
         <button>카카오로 로그인</button>
         <button>구글로 로그인</button>
         <span className={"large_text"}>혹시 오늘 폴로카가 처음이신가요?</span>
-        <CustomLink url={"/singup"} text={"회원가입 하러가기 ->"} className={"link"} />
+        <CustomLink url={"/signup"} text={"회원가입 하러가기 ->"} className={"link"} />
       </SocialLoginWrapper>
     </UserLayout>
   );

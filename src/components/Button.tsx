@@ -13,7 +13,7 @@ const Button = ({
   color?: string;
 }) => {
   return (
-    <StyledButton style={{ width: width }} color={color} onClick={() => onClick}>
+    <StyledButton style={{ width: width }} color={color} onClick={onClick}>
       {contents}
     </StyledButton>
   );
