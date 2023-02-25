@@ -43,6 +43,11 @@ const Wrapper = styled.header`
   justify-content: space-between;
   align-items: center;
   padding: 0 71px 0 65px;
+  position: sticky;
+  top: 0;
+  left: 0;
+  background: #ffffff;
+  z-index: 10;
 
   .MobileAboutUS {
     display: none;

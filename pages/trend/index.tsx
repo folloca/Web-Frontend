@@ -3,22 +3,43 @@ import styled from "styled-components";
 import React from "react";
 import CardContainer from "../../src/containers/CardContainer";
 import BannerContainer from "../../src/containers/BannerContainer";
+import GridTitle from "../../src/components/GridTitle";
+import SpaceCard from "../../src/components/SpaceCard";
 
 const Trend: NextPage = () => {
   return (
     <Wrapper>
-      <section>
+      <section style={{ marginBottom: "24px" }}>
         <BannerContainer />
       </section>
       <article>
         <section>
+          <GridTitle text={<div>지금 뜨는 기획</div>} padding={"8px 0 2px 16px"} />
           <CardContainer />
         </section>
-        <section className={"popular"}>인기공간</section>
+        <section className={"popular"}>
+          <GridTitle text={<div>지금 뜨는 공간</div>} padding={"8px 0 2px 16px"} />
+          <Spaces>
+            <SpaceCard />
+            <SpaceCard />
+            <SpaceCard />
+            <SpaceCard />
+            <SpaceCard />
+            <SpaceCard />
+            <SpaceCard />
+          </Spaces>
+        </section>
       </article>
     </Wrapper>
   );
 };
+
+const Spaces = styled.div`
+  width: 417px;
+  height: 176px;
+
+  background: red;
+`;
 
 const Wrapper = styled.main`
   padding: 0 70px;
@@ -37,6 +58,8 @@ const Wrapper = styled.main`
   }
 
   .popular {
+    width: 100%;
+
     ${({ theme }) => theme.device.mobile`
         margin-bottom: 108px;
   `}

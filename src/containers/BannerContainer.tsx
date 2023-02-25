@@ -51,7 +51,6 @@ const Wrapper = styled.div`
   height: 320px;
   overflow: hidden;
   position: relative;
-  margin-bottom: 24px;
 `;
 
 const BannerButtonWrapper = styled.div`
