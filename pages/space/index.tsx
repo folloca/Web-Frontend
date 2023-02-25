@@ -4,7 +4,7 @@ import React from "react";
 import Select from "react-select";
 import GridTitle from "../../src/components/GridTitle";
 import styled from "styled-components";
-import CreateSpaceCard from "../../src/components/CreateSpaceCard";
+import CreateCard from "../../src/components/CreateCard";
 import SpaceCard from "../../src/components/SpaceCard";
 
 const options1 = [
@@ -42,7 +42,7 @@ const Space: NextPage = () => {
         </div>
       </Grid>
       <SpaceSection>
-        <CreateSpaceCard />
+        <CreateCard text={`나에게 꼭 맞는 기획을\n찾고있나요?\n\n공간을 등록해보세요.`} />
         <SpaceCard />
         <SpaceCard />
         <SpaceCard />
