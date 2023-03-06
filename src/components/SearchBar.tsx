@@ -2,21 +2,20 @@ import React, { ChangeEvent } from "react";
 import styled from "styled-components";
 import Image from "next/image";
 
-const SearchBar = () => {
-  const [searchValue, setSearchValue] = React.useState("");
-  const [searchTags, setSearchTags] = React.useState<Array<string>>([]);
+const SearchBar = ({
+  searchValue,
+  searchTags,
+  handleRemoveTag,
+  handleOnKeyPress,
+  handleInputOnChange,
+}: {
+  searchValue: string;
+  searchTags: Array<string>;
+  handleRemoveTag: () => void;
+  handleOnKeyPress: (e: React.KeyboardEvent<HTMLInputElement>) => void;
+  handleInputOnChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}) => {
   const totalCount = 12;
-
-  const handleOnKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter") {
-      setSearchTags([...searchTags, searchValue]);
-      setSearchValue("");
-    }
-  };
-
-  const handleRemoveTag = () => {
-    setSearchTags([]);
-  };
 
   return (
     <Wrapper>
@@ -43,7 +42,7 @@ const SearchBar = () => {
               <input
                 placeholder="관심있는 주제를 검색해보세요!"
                 value={searchValue}
-                onChange={(e) => setSearchValue(e.target.value)}
+                onChange={handleInputOnChange}
                 onKeyPress={handleOnKeyPress}
               />
             )}

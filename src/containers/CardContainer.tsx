@@ -42,7 +42,7 @@ const CardMockData = [
 
 const CardContainer = () => {
   return (
-    <Wrapper>
+    <Wrapper className="card__container">
       {CardMockData.map((data) => (
         <Card
           id={data.id}
