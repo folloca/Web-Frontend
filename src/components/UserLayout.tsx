@@ -15,8 +15,8 @@ export default function UserLayout({ children, title, name }: AppLayoutProps) {
             src={"/assets/Logo.svg"}
             className={"logo_img"}
             layout={"fixed"}
-            width={"230px"}
-            height={"48px"}
+            width={230}
+            height={48}
             alt={"logo image"}
           />
         </span>
