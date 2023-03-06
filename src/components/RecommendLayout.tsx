@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import Card from "./Card";
 import CardContainer from "../containers/CardContainer";
 
 interface IRecommendLayout {
@@ -22,12 +21,10 @@ const RecommendLayout = ({ title, recommendList }: IRecommendLayout) => {
 
 const Wrapper = styled.div`
   width: 100%;
-  margin-top: 32px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  padding-bottom: 200px;
 
   .text {
     font-family: "Spoqa Han Sans Neo";

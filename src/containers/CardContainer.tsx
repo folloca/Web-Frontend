@@ -40,10 +40,10 @@ const CardMockData = [
   },
 ];
 
-const CardContainer = () => {
+const CardContainer = ({ isToggleOpen = true }: { isToggleOpen?: boolean }) => {
   return (
     <Wrapper className="card__container">
-      {CardMockData.map((data) => (
+      {CardMockData.slice(0, isToggleOpen ? CardMockData.length : 3).map((data) => (
         <Card
           id={data.id}
           title={data.title}
