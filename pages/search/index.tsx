@@ -4,6 +4,7 @@ import SearchBar from "../../src/components/SearchBar";
 import styled from "styled-components";
 import RecommendLayout from "../../src/components/RecommendLayout";
 import SearchResultLayout from "../../src/components/SearchResultLayout";
+import Image from "next/image";
 
 const Search: NextPage = () => {
   const [searchValue, setSearchValue] = React.useState("");
@@ -22,6 +23,14 @@ const Search: NextPage = () => {
 
   const handleRemoveTag = () => {
     setSearchTags([]);
+  };
+
+  const handleScrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
   };
 
   return (
@@ -43,6 +52,11 @@ const Search: NextPage = () => {
           </>
         )}
       </div>
+      {searchTags.length !== 0 && (
+        <ScrollToTopBtn onClick={handleScrollToTop}>
+          <Image src={"/assets/BlueUpArrow.svg"} alt="scrollToTop" width={32} height={33} />
+        </ScrollToTopBtn>
+      )}
     </Wrapper>
   );
 };
@@ -62,6 +76,19 @@ const Wrapper = styled.div`
     padding-bottom: 200px;
     gap: 48px;
   }
+`;
+
+const ScrollToTopBtn = styled.button`
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: none;
+  background: #ffffff;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  position: fixed;
+  bottom: 96px;
+  right: 38px;
 `;
 
 export default Search;
