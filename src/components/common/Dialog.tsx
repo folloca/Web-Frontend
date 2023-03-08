@@ -113,7 +113,7 @@ export default function Dialog({ title, contents, grayBtn, blueBtn, onClick, isC
       <Wrapper>
         {isCloseButton && (
           <div className="icon__wrapper">
-            <Image src={"/assets/X-Icon.svg"} width={32} height={32} />
+            <Image src={"/assets/X-Icon.svg"} width={32} height={32} alt="close" />
           </div>
         )}
 
