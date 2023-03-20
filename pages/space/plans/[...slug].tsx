@@ -54,7 +54,6 @@ const CardMockData = [
 const Plans: NextPage = () => {
   const router = useRouter();
   const queries = router.query.slug || "Loading";
-  console.log(queries);
 
   if (queries === "Loading") {
     return <div>Loading</div>;
