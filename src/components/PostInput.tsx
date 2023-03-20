@@ -4,11 +4,35 @@ import { font } from "../config/style/fontTheme";
 
 interface IPostInput {
   placeholder?: string;
+  maxLength?: number;
+  value?: string;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  type?: React.HTMLInputTypeAttribute;
+  step?: number;
 }
 
-function PostInput({ placeholder }: IPostInput) {
-  return <Input type="text" placeholder={placeholder} />;
-}
+const PostInput = React.memo(
+  ({
+    placeholder,
+    maxLength = undefined,
+    onChange = () => {},
+    value = "",
+    type = "text",
+    step = undefined,
+  }: IPostInput) => {
+    return (
+      <Input
+        type={type}
+        placeholder={placeholder}
+        maxLength={maxLength}
+        onChange={onChange}
+        value={value}
+        step={step}
+        min={0}
+      />
+    );
+  },
+);
 
 const Input = styled.input`
   width: 100%;
