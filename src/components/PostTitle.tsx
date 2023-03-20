@@ -8,7 +8,7 @@ interface IPostTitle {
   subString?: string;
 }
 
-function PostTitle({ text, require, subString }: IPostTitle) {
+const PostTitle = React.memo(({ text, require, subString }: IPostTitle) => {
   return (
     <Wrapper>
       {require && <RequireStatus>*</RequireStatus>}
@@ -16,7 +16,7 @@ function PostTitle({ text, require, subString }: IPostTitle) {
       {subString && <SubString>{subString}</SubString>}
     </Wrapper>
   );
-}
+});
 
 const Wrapper = styled.div`
   ${font.spoqaHanSansNeo.medium.paragraph[2]}
