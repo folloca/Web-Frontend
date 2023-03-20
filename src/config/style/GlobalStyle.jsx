@@ -14,6 +14,14 @@ const GlobalStyle = createGlobalStyle`
 
   ;
 
+  .space-status.ongoing {
+    color: #047fff;
+  }
+
+  .space-status.grayStatus {
+    color: #C5C5C5;
+  }
+
 
   a {
     ${(props) => props.theme.font.spoqaHanSansNeo.medium.paragraph["2"]};
