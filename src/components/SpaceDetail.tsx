@@ -67,7 +67,10 @@ function SpaceDetail({
             />
           </ButtonsWrapper>
         </DetailHeader>
-        <DetailImages />
+        <DetailContents>
+          <DetailImages />
+          <div>연희동네창고 공간에 대해 더 자세히 알려드릴게요</div>
+        </DetailContents>
       </Grid>
     </Wrapper>
   );
@@ -76,6 +79,7 @@ function SpaceDetail({
 const Wrapper = styled.div<{ isOpenDetail: boolean }>`
   width: 100vw;
   height: calc(100vh - 80px);
+  overflow-x: hidden;
   position: fixed;
   top: ${({ isOpenDetail }) => (isOpenDetail ? "80px" : "-100vh")};
   left: 0;
@@ -131,6 +135,11 @@ const ButtonsWrapper = styled.div`
   display: flex;
   gap: 24px;
   justify-content: right;
+`;
+
+const DetailContents = styled.div`
+  overflow-x: auto;
+  height: calc(100% - 128px);
 `;
 
 export default SpaceDetail;

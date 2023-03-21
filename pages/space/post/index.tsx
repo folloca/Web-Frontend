@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import styled from "styled-components";
 import { font } from "../../../src/config/style/fontTheme";
 import DirectionButton from "../../../public/assets/DirectionButton.svg";
@@ -128,6 +128,14 @@ function PostSpace() {
   const handlerOpenDialog = () => {
     setPostDialog((prev) => ({ ...prev, isOpen: true }));
   };
+
+  useEffect(() => {
+    if (isOpenDetail) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "scroll";
+    }
+  }, [isOpenDetail]);
 
   return (
     <Wrapper>
