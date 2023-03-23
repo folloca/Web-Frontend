@@ -5,6 +5,8 @@ import ShareImg from "../../public/assets/Share.svg";
 import { font } from "../config/style/fontTheme";
 import Button from "./Button";
 import DetailImages from "./DetailImages";
+import SpaceSummary from "./SpaceSummary";
+import SpaceDetailDescription from "./SpaceDetailDescription";
 
 interface ISpaceDetail {
   isOpenDetail: boolean;
@@ -69,7 +71,10 @@ function SpaceDetail({
         </DetailHeader>
         <DetailContents>
           <DetailImages />
-          <div>연희동네창고 공간에 대해 더 자세히 알려드릴게요</div>
+          <SpaceDetailInfo>
+            <SpaceSummary />
+            <SpaceDetailDescription />
+          </SpaceDetailInfo>
         </DetailContents>
       </Grid>
     </Wrapper>
@@ -140,6 +145,14 @@ const ButtonsWrapper = styled.div`
 const DetailContents = styled.div`
   overflow-x: auto;
   height: calc(100% - 128px);
+`;
+
+const SpaceDetailInfo = styled.div`
+  display: flex;
+
+  & > div {
+    flex: 1;
+  }
 `;
 
 export default SpaceDetail;
