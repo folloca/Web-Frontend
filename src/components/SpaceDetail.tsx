@@ -5,17 +5,22 @@ import ShareImg from "../../public/assets/Share.svg";
 import { font } from "../config/style/fontTheme";
 import Button from "./Button";
 import DetailImages from "./DetailImages";
-import SpaceSummary from "./SpaceSummary";
 import SpaceDetailDescription from "./SpaceDetailDescription";
+import SpaceSummary from "./SpaceSummary";
 
 interface ISpaceDetail {
   isOpenDetail: boolean;
   disabled: boolean;
   handlerOpenDialog: () => void;
   handlerCloseDetail: () => void;
-
+  dueDate: string;
   subject: string;
   spaceName: string;
+  mainSubject: string;
+  personnel: string;
+  area: string;
+  price: string;
+  tags: string[];
 }
 
 function SpaceDetail({
@@ -25,6 +30,12 @@ function SpaceDetail({
   handlerCloseDetail,
   subject,
   spaceName,
+  mainSubject,
+  personnel,
+  area,
+  price,
+  dueDate,
+  tags,
 }: ISpaceDetail) {
   return (
     <Wrapper isOpenDetail={isOpenDetail}>
@@ -34,14 +45,14 @@ function SpaceDetail({
             <DetailTitleWrapper>
               <DetailTitle>
                 {`${spaceName === "" ? "공간이름을 입력해주세요." : `#${spaceName}`}`}{" "}
-                {`${subject === "" ? "주제를 입력해주세요." : `#${subject}`}`}
+                {`${subject === "" ? "공간 키워드를 입력해주세요." : `#${subject}`}`}
               </DetailTitle>
               <button onClick={handlerCloseDetail}>공간 상세정보 닫기</button>
             </DetailTitleWrapper>
             <StatusWrapper>
               <div>
                 <span className="space-status ongoing">진행중</span>{" "}
-                <span className="space-status grayStatus">| 10.18 마감 | 팝업</span>
+                <span className="space-status grayStatus">| {dueDate} 마감 | 팝업</span>
               </div>
               <ShareImg /> <HeartImg />
             </StatusWrapper>
@@ -72,7 +83,14 @@ function SpaceDetail({
         <DetailContents>
           <DetailImages />
           <SpaceDetailInfo>
-            <SpaceSummary />
+            <SpaceSummary
+              tags={tags}
+              spaceName={spaceName}
+              mainSubject={mainSubject}
+              area={area}
+              personnel={personnel}
+              price={price}
+            />
             <SpaceDetailDescription />
           </SpaceDetailInfo>
         </DetailContents>
@@ -104,7 +122,6 @@ const DetailHeader = styled.div`
   padding: 24px 71px 0 24px;
   display: flex;
   justify-content: space-between;
-  height: 128px;
 `;
 
 const DetailTitleWrapper = styled.div`

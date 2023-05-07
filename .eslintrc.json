@@ -4,12 +4,13 @@
     "es6": true,
     "node": true
   },
-  "parser": "babel-eslint",
+  "parser": "@typescript-eslint/parser",
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
-    "airbnb",
-    "plugin:prettier/recommended"
+    "plugin:prettier/recommended",
+    "prettier",
+    "plugin:@typescript-eslint/recommended"
   ],
   "settings": {
     "react": {
@@ -21,7 +22,9 @@
       "jsx": true
     },
     "ecmaVersion": 2018,
-    "sourceType": "module"
+    "sourceType": "module",
+    "requireConfigFile": false,
+    "project": "./tsconfig.json"
   },
   "plugins": [
     "react",
@@ -34,7 +37,8 @@
     "react/jsx-filename-extension": 0,
     "react/jsx-one-expression-per-line": 0,
     "no-nested-ternary": 0,
-    "no-use-before-define": 0
+    "no-use-before-define": 0,
+    "@typescript-eslint/quotes": 0
   },
   "globals": {
     "React": "writable"

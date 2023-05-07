@@ -11,8 +11,8 @@ interface ISpaceDetailMainImages {
 function SpaceDetailMainImages({ imagesUrl, ImagesRef }: ISpaceDetailMainImages) {
   return (
     <Wrapper ref={ImagesRef}>
-      {imagesUrl.map((image) => (
-        <div style={{ width: "528px", height: "528px", display: "inline-block;" }}>
+      {imagesUrl.map((image, idx) => (
+        <div style={{ width: "528px", height: "528px", display: "inline-block;" }} key={`${image}+${idx}`}>
           <SpaceDetailImageCard imageUrl={image} key={image} />
         </div>
       ))}

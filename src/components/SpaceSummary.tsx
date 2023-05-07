@@ -2,33 +2,44 @@ import React from "react";
 import styled from "styled-components";
 import { font } from "../config/style/fontTheme";
 
-function SpaceSummary() {
-  const tags = ["창고컨셉", "공간리폼가능", "팝업"];
+interface ISpaceSummary {
+  tags: string[];
+  spaceName: string;
+  mainSubject: string;
+  personnel: string;
+  area: string;
+  price: string;
+}
+
+function SpaceSummary({ tags, spaceName, mainSubject, personnel, price, area }: ISpaceSummary) {
   return (
     <Wrapper>
       <Title>
-        <BlueColorText>연희동네창고</BlueColorText> 공간 대해 더 자세히 알려드릴게요
+        <BlueColorText>{spaceName}</BlueColorText> 공간 대해 더 자세히 알려드릴게요
       </Title>
       <Subject>
-        <BlueColorText>“창고/지하실 컨셉과 잘 어울릴 수 있는 팝업 브랜드”</BlueColorText>
+        <BlueColorText>{`"${mainSubject}"`}</BlueColorText>
       </Subject>
       <Table>
-        <tr>
-          <td className="col">면적</td>
-          <td>150 ㎡</td>
-        </tr>
-        <tr>
-          <td className="col">인원</td>
-          <td>최대 20명 인원 추가 시 협의</td>
-        </tr>
-        <tr>
-          <td className="col">가격</td>
-          <td>월 80만원 - 120만원</td>
-        </tr>
+        <thead></thead>
+        <tbody>
+          <tr>
+            <td className="col">면적</td>
+            <td>{area} ㎡</td>
+          </tr>
+          <tr>
+            <td className="col">인원</td>
+            <td>{personnel}</td>
+          </tr>
+          <tr>
+            <td className="col">가격</td>
+            <td>{price}</td>
+          </tr>
+        </tbody>
       </Table>
       <Tags>
-        {tags.map((tag) => (
-          <div>{tag}</div>
+        {tags.map((tag, idx) => (
+          <div key={`${tag}+${idx}`}>{tag}</div>
         ))}
       </Tags>
     </Wrapper>

@@ -1,20 +1,20 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useLayoutEffect, useMemo, useState } from "react";
 import styled from "styled-components";
 import { font } from "../../../src/config/style/fontTheme";
 import DirectionButton from "../../../public/assets/DirectionButton.svg";
+import useText from "../../../src/hooks/useText";
+import useBoolean from "../../../src/hooks/useBoolean";
 import PostTitle from "../../../src/components/PostTitle";
 import PostInput from "../../../src/components/PostInput";
-import PostText from "../../../src/components/PostText";
 import PostImages from "../../../src/components/PostImages";
+import PostText from "../../../src/components/PostText";
 import SpacePostToggle from "../../../src/components/SpacePostToggle";
 import SpacePostTags from "../../../src/components/SpacePostTags";
-import useText from "../../../src/hooks/useText";
 import SpacePostDueDate from "../../../src/components/SpacePostDueDate";
 import PostFloorPlan from "../../../src/components/PostFloorPlan";
-import FloorPlanDialog from "../../../src/components/FloorPlanDialog";
-import useBoolean from "../../../src/hooks/useBoolean";
-import FloorPlan from "../../../src/FloorPlan";
 import Button from "../../../src/components/Button";
+import FloorPlanDialog from "../../../src/components/FloorPlanDialog";
+import FloorPlan from "../../../src/FloorPlan";
 import Dialog from "../../../src/components/common/Dialog";
 import SpaceDetail from "../../../src/components/SpaceDetail";
 
@@ -68,19 +68,16 @@ function PostSpace() {
   const { value: imgSrc, setNewText: setImgSrc, setReset } = useText(undefined);
   const { value: isOpenDetail, setTrue: handlerOpenDetail, setFalse: handlerCloseDetail } = useBoolean(false);
   const { value: isImageDone, setTrue: handlerImageDoneTrue } = useBoolean(false);
+  const [today, setToday] = useState("");
+  const { value: dueDate, setNewValue: handlerSetDueDate, setNewText } = useText(today);
 
-  const d = new Date();
-  const year = d.toLocaleDateString().split("/")[2];
-  const mon =
-    Number(d.toLocaleDateString().split("/")[0]) < 10
-      ? `0${d.toLocaleDateString().split("/")[0]}`
-      : d.toLocaleDateString().split("/")[0];
-  const day =
-    Number(d.toLocaleDateString().split("/")[1]) < 10
-      ? `0${d.toLocaleDateString().split("/")[1]}`
-      : d.toLocaleDateString().split("/")[1];
-  const today = `${year}-${mon}-${day}`;
-  const { value: dueDate, setNewValue: handlerSetDueDate } = useText(today);
+  useLayoutEffect(() => {
+    const d = new Date().toLocaleDateString();
+    const [year, month, day] = d.replaceAll(".", "").split(" ");
+    const tempToday = `${year}-${Number(month) < 10 ? `0${month}` : month}-${Number(day) < 10 ? `0${day}` : day}`;
+    setToday(tempToday);
+    setNewText(tempToday);
+  }, []);
 
   const handlerSetMarkers = (x: number, y: number) => {
     if (markers.length > 7) return;
@@ -147,17 +144,9 @@ function PostSpace() {
           <div className="title small-margin-bottom">
             <PostTitle
               text="제목"
-              require={true}
+              require
               subString="작성된 제목은 게시글에 표시되어요. 예시) #여름바이브 #즐거운다락방"
             />
-            <div>
-              <PostInput
-                placeholder="#원하는 주제를 간략하게 표현해주세요. (5자)"
-                value={subject}
-                onChange={handlerSetSubject}
-                maxLength={5}
-              />
-            </div>
             <div>
               <PostInput
                 placeholder="#공간의 이름을 작성해주세요. (8자)"
@@ -166,10 +155,18 @@ function PostSpace() {
                 maxLength={8}
               />
             </div>
+            <div>
+              <PostInput
+                placeholder="#원하는 주제를 간략하게 표현해주세요. (5자)"
+                value={subject}
+                onChange={handlerSetSubject}
+                maxLength={5}
+              />
+            </div>
           </div>
 
           <div className="small-margin-bottom">
-            <PostTitle text="주제" require={true} />
+            <PostTitle text="주제" require />
             <div>
               <PostInput
                 placeholder="공간 기획을 통해 실현하고자 하는 주제를 작성해주세요. (30자)"
@@ -203,7 +200,7 @@ function PostSpace() {
           </div>
 
           <div className="small-margin-bottom">
-            <PostTitle text="자유로운 한마디" require={true} />
+            <PostTitle text="자유로운 한마디" require />
             <div>
               <PostText
                 placeholder="공간을 기획하는 분께 전하고 싶은 점을 작성해주세요. (120자)&#10;예시) 공간의 형태와 어울리는 조형물을 함께 제안해주시기를 부탁드려요."
@@ -274,7 +271,13 @@ function PostSpace() {
         handlerCloseDetail={handlerCloseDetail}
         disabled={validateRequireValue}
         subject={subject || ""}
+        mainSubject={mainSubject || ""}
         spaceName={spaceName || ""}
+        personnel={personnel || ""}
+        area={area || ""}
+        price={price || ""}
+        dueDate={dueDate || today}
+        tags={tags}
       />
     </Wrapper>
   );

@@ -12,7 +12,7 @@ function SpaceDetailThumbnail({ thumbnails, handlerMoveScroll }: ISpaceDetailThu
   return (
     <Wrapper>
       {thumbnails.map((image, idx) => (
-        <div style={{ width: "64px", height: "64px", display: "inline-block;" }}>
+        <div style={{ width: "64px", height: "64px", display: "inline-block;" }} key={`${thumbnails}+${idx}`}>
           <SpaceDetailImageCard imageUrl={image} onClick={handlerMoveScroll(idx)} key={image} />
         </div>
       ))}
