@@ -7,11 +7,11 @@ import Button from "./Button";
 import DetailImages from "./DetailImages";
 import SpaceDetailDescription from "./SpaceDetailDescription";
 import SpaceSummary from "./SpaceSummary";
+import { TSpaceType } from "../../pages/space/post";
 
 interface ISpaceDetail {
-  isOpenDetail: boolean;
   disabled: boolean;
-  handlerOpenDialog: () => void;
+  handlerPostSpace: () => void;
   handlerCloseDetail: () => void;
   dueDate: string;
   subject: string;
@@ -21,12 +21,14 @@ interface ISpaceDetail {
   area: string;
   price: string;
   tags: string[];
+  description: string;
+  spaceType: TSpaceType;
+  images: string[];
 }
 
 function SpaceDetail({
-  isOpenDetail,
   disabled,
-  handlerOpenDialog,
+  handlerPostSpace,
   handlerCloseDetail,
   subject,
   spaceName,
@@ -36,9 +38,12 @@ function SpaceDetail({
   price,
   dueDate,
   tags,
+  description,
+  spaceType,
+  images,
 }: ISpaceDetail) {
   return (
-    <Wrapper isOpenDetail={isOpenDetail}>
+    <Wrapper>
       <Grid>
         <DetailHeader>
           <div>
@@ -52,7 +57,9 @@ function SpaceDetail({
             <StatusWrapper>
               <div>
                 <span className="space-status ongoing">진행중</span>{" "}
-                <span className="space-status grayStatus">| {dueDate} 마감 | 팝업</span>
+                <span className="space-status grayStatus">
+                  | {dueDate} 마감 | {spaceType}
+                </span>
               </div>
               <ShareImg /> <HeartImg />
             </StatusWrapper>
@@ -76,12 +83,12 @@ function SpaceDetail({
               height="56px"
               width="112px"
               disabled={disabled}
-              onClick={handlerOpenDialog}
+              onClick={handlerPostSpace}
             />
           </ButtonsWrapper>
         </DetailHeader>
         <DetailContents>
-          <DetailImages />
+          <DetailImages images={images} />
           <SpaceDetailInfo>
             <SpaceSummary
               tags={tags}
@@ -91,7 +98,7 @@ function SpaceDetail({
               personnel={personnel}
               price={price}
             />
-            <SpaceDetailDescription />
+            <SpaceDetailDescription description={description} />
           </SpaceDetailInfo>
         </DetailContents>
       </Grid>
@@ -99,16 +106,13 @@ function SpaceDetail({
   );
 }
 
-const Wrapper = styled.div<{ isOpenDetail: boolean }>`
+const Wrapper = styled.div`
   width: 100vw;
-  height: calc(100vh - 80px);
+  height: auto;
+  min-height: 100%;
   overflow-x: hidden;
-  position: fixed;
-  top: ${({ isOpenDetail }) => (isOpenDetail ? "80px" : "-100vh")};
-  left: 0;
   background: #ffffff;
   padding-left: 70px;
-  transition-duration: 1.5s;
 `;
 
 const Grid = styled.div`
@@ -122,6 +126,10 @@ const DetailHeader = styled.div`
   padding: 24px 71px 0 24px;
   display: flex;
   justify-content: space-between;
+
+  ${({ theme }) => theme.device.tablet`
+            padding: 16px 0px 0 16px;
+  `}
 `;
 
 const DetailTitleWrapper = styled.div`
@@ -170,6 +178,10 @@ const SpaceDetailInfo = styled.div`
   & > div {
     flex: 1;
   }
+
+  ${({ theme }) => theme.device.tablet`
+        display: block;
+  `}
 `;
 
 export default SpaceDetail;

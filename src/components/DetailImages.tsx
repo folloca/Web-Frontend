@@ -7,15 +7,18 @@ import SpaceDetailMainImages from "./SpaceDetailMainImages";
 export type TDirections = "right" | "left" | number;
 
 export type TImages = string[];
-const images = [
+const mockImages = [
   "https://i.dummyjson.com/data/products/12/1.jpg",
   "https://i.dummyjson.com/data/products/12/2.jpg",
   "https://i.dummyjson.com/data/products/12/3.png",
   "https://i.dummyjson.com/data/products/12/4.jpg",
-  "https://i.dummyjson.com/data/products/12/thumbnail.jpg",
 ];
 
-function DetailImages() {
+interface IDetailImages {
+  images: string[];
+}
+
+function DetailImages({ images }: IDetailImages) {
   const [cur, setCur] = useState(0);
   const ImagesRef = useRef<HTMLDivElement>(null);
 
@@ -29,17 +32,16 @@ function DetailImages() {
 
   useEffect(() => {
     if (ImagesRef.current === null) return;
-    const location = -ImagesRef.current.children[cur].getBoundingClientRect().width;
-    ImagesRef.current.style.transform = `translate(${location * cur}px, 0px)`;
+    const location = ImagesRef.current.children[cur].getBoundingClientRect().width;
+    ImagesRef.current.style.transform = `translate(-${location * cur}px, 0px)`;
   }, [cur]);
 
   return (
     <Wrapper>
-      <SpaceDetailMainImages ImagesRef={ImagesRef} imagesUrl={images} />
-      <SpaceDetailThumbnail thumbnails={images} handlerMoveScroll={handlerMoveScroll} />
-
+      <SpaceDetailMainImages ImagesRef={ImagesRef} imagesUrl={mockImages} />
+      <SpaceDetailThumbnail thumbnails={mockImages} handlerMoveScroll={handlerMoveScroll} />
       {cur > 0 && <DirectionButton className="DirectionRightButton" onClick={handlerMoveScroll("left")} />}
-      {cur < images.length - 1 && (
+      {cur < mockImages.length - 1 && (
         <DirectionButton className="DirectionLeftButton" onClick={handlerMoveScroll("right")} />
       )}
     </Wrapper>
