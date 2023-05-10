@@ -8,6 +8,7 @@ interface ISpaceDetailDescription {
 }
 
 function SpaceDetailDescription({ description }: ISpaceDetailDescription) {
+  console.log(description);
   return (
     <Wrapper>
       <Title>
@@ -45,6 +46,11 @@ const Description = styled.div`
   border-style: solid;
   border-color: #000000;
   height: 100%;
+
+  & div {
+    white-space: pre-wrap;
+  }
+
   ${font.spoqaHanSansNeo.regular.paragraph["2"]};
 `;
 

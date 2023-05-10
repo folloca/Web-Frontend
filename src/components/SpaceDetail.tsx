@@ -171,6 +171,9 @@ const DetailContents = styled.div`
   overflow: hidden;
   overflow-x: auto;
   height: calc(100% - 128px);
+  ${({ theme }) => theme.device.tablet`
+        padding-bottom: 100px;
+  `}
 `;
 
 const SpaceDetailInfo = styled.div`
