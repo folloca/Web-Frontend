@@ -12,9 +12,9 @@ function SpaceDetailMainImages({ imagesUrl, ImagesRef }: ISpaceDetailMainImages)
   return (
     <Wrapper ref={ImagesRef}>
       {imagesUrl.map((image, idx) => (
-        <div style={{ width: "528px", height: "528px", display: "inline-block;" }} key={`${image}+${idx}`}>
+        <Image key={`${image}+${idx}`}>
           <SpaceDetailImageCard imageUrl={image} key={image} />
-        </div>
+        </Image>
       ))}
     </Wrapper>
   );
@@ -31,4 +31,9 @@ const Wrapper = styled.div`
   }
 `;
 
+const Image = styled.div`
+  width: 528px;
+  height: 528px;
+  display: inline-block;
+`;
 export default SpaceDetailMainImages;

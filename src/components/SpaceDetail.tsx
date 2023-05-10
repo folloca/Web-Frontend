@@ -168,6 +168,7 @@ const ButtonsWrapper = styled.div`
 `;
 
 const DetailContents = styled.div`
+  overflow: hidden;
   overflow-x: auto;
   height: calc(100% - 128px);
 `;

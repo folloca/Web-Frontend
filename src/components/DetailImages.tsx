@@ -32,16 +32,18 @@ function DetailImages({ images }: IDetailImages) {
 
   useEffect(() => {
     if (ImagesRef.current === null) return;
-    const location = ImagesRef.current.children[cur].getBoundingClientRect().width;
+    if (ImagesRef.current.children.length === 0) return;
+
+    const location = ImagesRef.current.children[cur].getBoundingClientRect().width || 0;
     ImagesRef.current.style.transform = `translate(-${location * cur}px, 0px)`;
   }, [cur]);
 
   return (
     <Wrapper>
-      <SpaceDetailMainImages ImagesRef={ImagesRef} imagesUrl={mockImages} />
-      <SpaceDetailThumbnail thumbnails={mockImages} handlerMoveScroll={handlerMoveScroll} />
+      <SpaceDetailMainImages ImagesRef={ImagesRef} imagesUrl={images} />
+      <SpaceDetailThumbnail thumbnails={images} handlerMoveScroll={handlerMoveScroll} />
       {cur > 0 && <DirectionButton className="DirectionRightButton" onClick={handlerMoveScroll("left")} />}
-      {cur < mockImages.length - 1 && (
+      {cur < images.length - 1 && (
         <DirectionButton className="DirectionLeftButton" onClick={handlerMoveScroll("right")} />
       )}
     </Wrapper>
