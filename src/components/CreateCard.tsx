@@ -4,11 +4,12 @@ import Plus from "../../public/assets/Plus.svg";
 
 interface ICreateCard {
   text: string;
+  onClick: () => void;
 }
 
-function CreateCard({ text }: ICreateCard) {
+function CreateCard({ text, onClick }: ICreateCard) {
   return (
-    <Wrapper>
+    <Wrapper onClick={onClick}>
       <Plus />
       <p>{text}</p>
     </Wrapper>

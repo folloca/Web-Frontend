@@ -33,7 +33,6 @@ interface IPostView {
   isImageDone: boolean;
   markers: number[][];
   postDialog: IPostDialog;
-  isOpenDetail: boolean;
   handlerSetSubject: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
   handlerSetArea: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
   handlerSetPersonnel: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
@@ -47,17 +46,16 @@ interface IPostView {
   setImgSrc: (newStr: string) => void;
   handlerSetSpaceName: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
   handlerSetMainSubject: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
-  handlerOpenDetail: () => void;
   validateRequireValue: boolean;
   handlerOpenDialog: () => void;
   handlerResetMarkers: () => void;
   handlerSetMarkers: (x: number, y: number) => void;
   handlerDeleteMarker: (x: number, y: number) => void;
   handlerImageDoneTrue: () => void;
-  handlerCloseDetail: () => void;
   handlerSelectSpaceType: (e: React.ChangeEvent<HTMLInputElement>) => void;
   setReset: () => void;
   handlerCheckPreview: () => void;
+  handlerPushSpace: () => void;
 }
 
 function PostView({
@@ -73,7 +71,6 @@ function PostView({
   markers,
   validateRequireValue,
   postDialog,
-  isOpenDetail,
   mainSubject,
   subject,
   area,
@@ -99,14 +96,14 @@ function PostView({
   handlerSetMarkers,
   handlerDeleteMarker,
   handlerImageDoneTrue,
-  handlerCloseDetail,
-  handlerOpenDetail,
+  handlerPushSpace,
   handlerCheckPreview,
 }: IPostView) {
   return (
     <Wrapper>
       <SpacePostHeader>
-        <DirectionButton /> 공간 등록
+        <DirectionButton onClick={handlerPushSpace} />
+        공간 등록
       </SpacePostHeader>
       <SpacePostContents>
         <div className="first-content">
@@ -263,6 +260,10 @@ const SpacePostHeader = styled.div`
   align-items: center;
   gap: 4px;
   margin-bottom: 24px;
+
+  & svg {
+    cursor: pointer;
+  }
 `;
 const SpacePostContents = styled.div`
   display: flex;

@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useLayoutEffect, useMemo, useState } from "react";
+import React, { useCallback, useLayoutEffect, useMemo, useState } from "react";
 import useBoolean from "../../../src/hooks/useBoolean";
 import PostView from "./PostView";
 import { TKey, usePostInputs } from "../../../src/states/usePostInputs";
@@ -16,7 +16,6 @@ export interface IPostDialog {
 }
 
 function PostSpace() {
-  const { value: isOpenDetail, setTrue: handlerOpenDetail, setFalse: handlerCloseDetail } = useBoolean(false);
   const { value: isImageDone, setTrue: handlerImageDoneTrue } = useBoolean(false);
   const router = useRouter();
 
@@ -141,13 +140,9 @@ function PostSpace() {
     router.push("/space/post/preview");
   };
 
-  useEffect(() => {
-    if (isOpenDetail) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "scroll";
-    }
-  }, [isOpenDetail]);
+  const handlerPushSpace = () => {
+    router.push("/space");
+  };
 
   return (
     <PostView
@@ -157,14 +152,11 @@ function PostSpace() {
       personnel={personnel || ""}
       tags={tags}
       markers={markers}
-      handlerCloseDetail={handlerCloseDetail}
       handlerDeleteMarker={handlerDeleteMarker}
       handlerResetMarkers={handlerResetMarkers}
       handlerSetMarkers={handlerSetMarkers}
       handlerSetImages={handlerSetImages}
       handlerImageDoneTrue={handlerImageDoneTrue}
-      handlerOpenDetail={handlerOpenDetail}
-      isOpenDetail={isOpenDetail}
       setReset={handlerResetImg}
       handlerAddTag={handlerAddTag}
       handlerSetSubject={handlerSetInputs("subject")}
@@ -192,6 +184,7 @@ function PostSpace() {
       description={description || ""}
       dueDate={dueDate || ""}
       today={today}
+      handlerPushSpace={handlerPushSpace}
     />
   );
 }
