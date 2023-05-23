@@ -11,8 +11,6 @@ interface IBannerControlButton {
 
 const BannerControlButton = React.memo(
   ({ title, value, isCheck, delay, handlerSetBannerNum }: IBannerControlButton) => {
-    console.log(title, value, isCheck, delay);
-
     const handlerChangeBanner = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
       handlerSetBannerNum(Number(e.currentTarget.value));
     };

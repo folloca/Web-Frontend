@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Image from "next/image";
 import button from "../Button";
+import { font } from "../../config/style/fontTheme";
 
 type AppDialogProps = {
   title: string;
@@ -10,20 +11,23 @@ type AppDialogProps = {
   blueBtn?: string;
   isCloseButton?: boolean;
   onClick: () => void;
+  grayBtnOnClick?: () => void;
 };
 
 const Container = styled.div`
   position: fixed;
   left: 0;
   top: 0;
-  width: 100%;
-  height: 100%;
+
+  width: 100vw;
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   background: rgba(255, 255, 255, 0.6);
   overflow: hidden;
+  z-index: 20;
 `;
 
 const Wrapper = styled.div`
@@ -34,7 +38,7 @@ const Wrapper = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  background: ${({ theme }) => theme.color.neutral[50]};
+  background: #fafafa;
   gap: 16px;
   padding: 64px 0 48px;
 
@@ -42,20 +46,12 @@ const Wrapper = styled.div`
   color: ${({ theme }) => theme.color.primary[400]};
 
   .title {
-    font-family: "Neue Haas Grotesk Display Pro";
-    font-style: normal;
-    font-weight: 450;
-    font-size: 40px;
-    line-height: 48px;
+    ${font.neueHaasGroteskDisplayPro.display[1]};
   }
 
   .contents {
-    font-family: "Spoqa Han Sans Neo";
-    font-style: normal;
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 24px;
     white-space: pre-line;
+    ${font.spoqaHanSansNeo.medium.paragraph[2]};
   }
 
   .icon__wrapper {
@@ -72,15 +68,12 @@ const ButtonContainer = styled.div`
   button {
     width: 112px;
     height: 56px;
-    font-family: "Spoqa Han Sans Neo";
-    font-style: normal;
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 24px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    ${font.spoqaHanSansNeo.medium.paragraph[2]};
   }
+
   .blue {
     color: ${({ theme }) => theme.color.shades["WHITE"]};
     background: ${({ theme }) => theme.color.primary[400]};
@@ -94,13 +87,20 @@ const ButtonContainer = styled.div`
   }
 `;
 
-export default function Dialog({ title, contents, grayBtn, blueBtn, onClick, isCloseButton }: AppDialogProps) {
+export default function Dialog({
+  title,
+  contents,
+  grayBtn,
+  blueBtn,
+  onClick,
+  isCloseButton,
+  grayBtnOnClick = () => {},
+}: AppDialogProps) {
   React.useEffect(() => {
     document.body.style.cssText = `
       position: fixed; 
       top: -${window.scrollY}px;
-      overflow-y: scroll;
-      width: 100%;`;
+      width: 100vw;`;
     return () => {
       const scrollY = document.body.style.top;
       document.body.style.cssText = "";
@@ -113,7 +113,7 @@ export default function Dialog({ title, contents, grayBtn, blueBtn, onClick, isC
       <Wrapper>
         {isCloseButton && (
           <div className="icon__wrapper">
-            <Image src={"/assets/X-Icon.svg"} width={32} height={32} alt="close" />
+            <Image src={"/assets/X-Icon.svg"} width={32} height={32} alt="x icon" />
           </div>
         )}
 
@@ -128,7 +128,7 @@ export default function Dialog({ title, contents, grayBtn, blueBtn, onClick, isC
         )}
         {blueBtn && grayBtn && (
           <ButtonContainer>
-            <button className="gray" onClick={onClick}>
+            <button className="gray" onClick={grayBtnOnClick}>
               {grayBtn}
             </button>
             <button className="blue" onClick={onClick}>

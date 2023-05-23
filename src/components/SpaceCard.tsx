@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useRouter } from "next/router";
+import { font } from "../config/style/fontTheme";
 
 function SpaceCard() {
   const router = useRouter();
@@ -16,7 +17,8 @@ function SpaceCard() {
       <TitleSection>
         <p onClick={handleMovePlan}>#핵심키워드 #공간이름은여기에</p>
         <div>
-          <span className="space-status ongoing">진행중</span> | 7.14 마감 | 팝업
+          <span className="space-status ongoing">진행중</span>{" "}
+          <span className="space-status grayStatus">| 7.14 마감 | 팝업</span>
         </div>
       </TitleSection>
       <ButtonSection>
@@ -40,21 +42,12 @@ const TitleSection = styled.div`
   height: 50%;
 
   & p {
-    font-family: "Spoqa Han Sans Neo";
-    font-style: normal;
-    font-weight: 500;
-    font-size: 24px;
-    line-height: 32px;
+    ${font.spoqaHanSansNeo.medium.paragraph[1]}
     cursor: pointer;
   }
 
   .space-status.ongoing {
-    color: #047fff;
-    font-family: "Spoqa Han Sans Neo";
-    font-style: normal;
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 24px;
+    ${font.spoqaHanSansNeo.medium.paragraph[2]}
   }
 
   & div {

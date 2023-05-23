@@ -4,7 +4,7 @@ import styled from "styled-components";
 import Select from "react-select";
 import React from "react";
 import Card from "../../../src/components/Card";
-import CreateSpaceCard from "../../../src/components/CreateSpaceCard";
+import CreateCard from "../../../src/components/CreateCard";
 
 const options2 = [
   { value: "트렌드순", label: "트렌드순" },
@@ -54,7 +54,6 @@ const CardMockData = [
 const Plans: NextPage = () => {
   const router = useRouter();
   const queries = router.query.slug || "Loading";
-  console.log(queries);
 
   if (queries === "Loading") {
     return <div>Loading</div>;
@@ -76,7 +75,7 @@ const Plans: NextPage = () => {
         </div>
       </Grid>
       <SpacePlans>
-        <CreateSpaceCard />
+        <CreateCard text={`\n나만의 아이디어를 공유하고\n실현할 수 있어요.\n\n기획을 제안해보세요!`} />
         {CardMockData.map((data) => (
           <Card
             id={data.id}
