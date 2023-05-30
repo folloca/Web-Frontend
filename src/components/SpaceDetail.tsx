@@ -10,8 +10,8 @@ import SpaceSummary from "./SpaceSummary";
 import { TSpaceType } from "../../pages/space/post";
 
 interface ISpaceDetail {
-  disabled: boolean;
-  handlerPostSpace: () => void;
+  disabled?: boolean;
+  handlerPostSpace?: () => void;
   handlerCloseDetail: () => void;
   dueDate: string;
   subject: string;
@@ -65,26 +65,30 @@ function SpaceDetail({
             </StatusWrapper>
           </div>
           <ButtonsWrapper>
-            <Button
-              contents="수정"
-              padding="16px 32px"
-              borderRadius="4px"
-              color="#ffffff"
-              fontColor="#828282"
-              borderColor="#828282"
-              height="56px"
-              width="112px"
-              onClick={handlerCloseDetail}
-            />
-            <Button
-              contents="등록"
-              padding="16px 32px"
-              borderRadius="4px"
-              height="56px"
-              width="112px"
-              disabled={disabled}
-              onClick={handlerPostSpace}
-            />
+            {handlerPostSpace !== undefined && (
+              <>
+                <Button
+                  contents="수정"
+                  padding="16px 32px"
+                  borderRadius="4px"
+                  color="#ffffff"
+                  fontColor="#828282"
+                  borderColor="#828282"
+                  height="56px"
+                  width="112px"
+                  onClick={handlerCloseDetail}
+                />
+                <Button
+                  contents="등록"
+                  padding="16px 32px"
+                  borderRadius="4px"
+                  height="56px"
+                  width="112px"
+                  disabled={disabled}
+                  onClick={handlerPostSpace}
+                />
+              </>
+            )}
           </ButtonsWrapper>
         </DetailHeader>
         <DetailContents>

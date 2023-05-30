@@ -3,7 +3,7 @@ import styled from "styled-components";
 import PostTitle from "./PostTitle";
 import { font } from "../config/style/fontTheme";
 import InputImage from "./InputImage";
-import FloorPlan from "../FloorPlan";
+import FloorPlan from "./FloorPlan";
 import InfoImg from "../../public/assets/Info.svg";
 
 interface IPostFloorPlan {

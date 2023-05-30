@@ -10,7 +10,7 @@ import SpacePostDueDate from "../../../src/components/SpacePostDueDate";
 import PostFloorPlan from "../../../src/components/PostFloorPlan";
 import Button from "../../../src/components/Button";
 import FloorPlanDialog from "../../../src/components/FloorPlanDialog";
-import FloorPlan from "../../../src/FloorPlan";
+import FloorPlan from "../../../src/components/FloorPlan";
 import Dialog from "../../../src/components/common/Dialog";
 import styled from "styled-components";
 import { font } from "../../../src/config/style/fontTheme";

@@ -1,7 +1,7 @@
 import React, { ChangeEvent, useRef } from "react";
-import Marker from "./components/Marker";
+import Marker from "./Marker";
 import styled from "styled-components";
-import { font } from "./config/style/fontTheme";
+import { font } from "../config/style/fontTheme";
 
 interface IFloorPlan {
   imgSrc: string;
@@ -18,11 +18,11 @@ function FloorPlan({
   imgSrc,
   markers = [],
   isInput = true,
-  handlerImageDoneTrue = () => {},
-  handlerDeleteMarker = () => {},
-  handlerSetMarkers = () => {},
-  handlerImageClick = () => {},
-  handlerSetFile = () => {},
+  handlerImageDoneTrue,
+  handlerDeleteMarker,
+  handlerSetMarkers,
+  handlerImageClick,
+  handlerSetFile,
 }: IFloorPlan) {
   const imageRef = useRef<HTMLDivElement>(null);
   const waveRef = useRef<HTMLDivElement>(null);
@@ -69,7 +69,7 @@ function FloorPlan({
     waveRef.current.style.left = `${x}px`;
     const ratioX = (x / width) * 100;
     const ratioY = (y / height) * 100;
-    handlerSetMarkers(ratioX, ratioY);
+    if (handlerSetMarkers !== undefined) handlerSetMarkers(ratioX, ratioY);
 
     let time = 0;
     const max = 30;
@@ -103,8 +103,7 @@ function FloorPlan({
               ? handlerClick
               : () => {
                   if (inputRef.current === null) return;
-
-                  handlerImageClick(inputRef.current);
+                  if (handlerImageClick !== undefined) handlerImageClick(inputRef.current);
                 }
           }
           onMouseEnter={handlerAppear}

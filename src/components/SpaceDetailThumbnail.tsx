@@ -24,7 +24,7 @@ const Wrapper = styled.div`
   height: 64px;
   background: #fafafa;
   width: 100%;
-  white-space: nowrap;
+  display: flex;
 
   & div:not(:first-of-type) {
     margin-left: 16px;

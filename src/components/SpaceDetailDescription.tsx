@@ -8,7 +8,6 @@ interface ISpaceDetailDescription {
 }
 
 function SpaceDetailDescription({ description }: ISpaceDetailDescription) {
-  console.log(description);
   return (
     <Wrapper>
       <Title>

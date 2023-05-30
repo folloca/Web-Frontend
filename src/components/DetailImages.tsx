@@ -3,6 +3,8 @@ import styled from "styled-components";
 import DirectionButton from "../../public/assets/DirectionButton.svg";
 import SpaceDetailThumbnail from "./SpaceDetailThumbnail";
 import SpaceDetailMainImages from "./SpaceDetailMainImages";
+import useBoolean from "../hooks/useBoolean";
+import FullScreenImages from "./FullScreenImages";
 
 export type TDirections = "right" | "left" | number;
 
@@ -14,12 +16,13 @@ const mockImages = [
   "https://i.dummyjson.com/data/products/12/4.jpg",
 ];
 
-interface IDetailImages {
+export interface IDetailImages {
   images: string[];
 }
 
 function DetailImages({ images }: IDetailImages) {
   const [cur, setCur] = useState(0);
+  const { value: isFull, setTrue, setFalse: handlerCloseModal } = useBoolean(false);
   const ImagesRef = useRef<HTMLDivElement>(null);
 
   const handlerMoveScroll = (direction: TDirections) => () => {
@@ -30,21 +33,35 @@ function DetailImages({ images }: IDetailImages) {
     }
   };
 
+  const handlerOpenImage = (imgIdx: number) => () => {
+    setCur(imgIdx);
+    setTrue();
+  };
+
   useEffect(() => {
     if (ImagesRef.current === null) return;
     if (ImagesRef.current.children.length === 0) return;
+    if (isFull) return;
 
     const location = ImagesRef.current.children[cur].getBoundingClientRect().width || 0;
     ImagesRef.current.style.transform = `translate(-${location * cur}px, 0px)`;
-  }, [cur]);
+  }, [cur, isFull]);
 
   return (
     <Wrapper>
-      <SpaceDetailMainImages ImagesRef={ImagesRef} imagesUrl={images} />
+      <SpaceDetailMainImages ImagesRef={ImagesRef} imagesUrl={images} handlerFullScreen={handlerOpenImage} />
       <SpaceDetailThumbnail thumbnails={images} handlerMoveScroll={handlerMoveScroll} />
-      {cur > 0 && <DirectionButton className="DirectionRightButton" onClick={handlerMoveScroll("left")} />}
-      {cur < images.length - 1 && (
+      {!isFull && cur > 0 && <DirectionButton className="DirectionRightButton" onClick={handlerMoveScroll("left")} />}
+      {!isFull && cur < images.length - 1 && (
         <DirectionButton className="DirectionLeftButton" onClick={handlerMoveScroll("right")} />
+      )}
+      {isFull && (
+        <FullScreenImages
+          images={images}
+          cur={cur}
+          handlerMoveScroll={handlerMoveScroll}
+          handlerCloseModal={handlerCloseModal}
+        />
       )}
     </Wrapper>
   );
@@ -55,11 +72,14 @@ const Wrapper = styled.div`
   overflow: hidden;
 
   & svg {
+    position: absolute;
+    cursor: pointer;
+  }
+
+  & > svg {
     width: 40px;
     height: 40px;
-    position: absolute;
     top: 40%;
-    cursor: pointer;
   }
 
   & .DirectionLeftButton {
