@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 interface IMarker {
-  handlerDeleteMarker: (x: number, y: number) => void;
+  handlerDeleteMarker?: (x: number, y: number) => void;
   x: number;
   y: number;
   idx: number;
@@ -14,7 +14,7 @@ function Marker({ handlerDeleteMarker, x, y, idx }: IMarker) {
       onClick={(e) => {
         e.stopPropagation();
         e.preventDefault();
-        handlerDeleteMarker(x, y);
+        if (handlerDeleteMarker !== undefined) handlerDeleteMarker(x, y);
       }}
       top={y}
       left={x}

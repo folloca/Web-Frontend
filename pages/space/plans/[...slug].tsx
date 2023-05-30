@@ -54,6 +54,9 @@ const CardMockData = [
 const Plans: NextPage = () => {
   const router = useRouter();
   const queries = router.query.slug || "Loading";
+  const handlerPushSpaceDetail = () => {
+    router.push(`/space/spaceDetail/1234`);
+  };
 
   if (queries === "Loading") {
     return <div>Loading</div>;
@@ -62,7 +65,10 @@ const Plans: NextPage = () => {
     <Wrapper>
       <Grid>
         <div className="space-plans-title">
-          {queries[0]} <span>상세정보</span>
+          {queries[0]}{" "}
+          <span className="spaceDetail-button" onClick={handlerPushSpaceDetail}>
+            상세정보
+          </span>
           <div className="space-plans-status">
             <span className="space-status ongoing">진행중</span> | 7.14 마감 | 팝업
           </div>
@@ -107,6 +113,10 @@ const Wrapper = styled.main`
       font-weight: 500;
       font-size: 16px;
       line-height: 24px;
+    }
+
+    .spaceDetail-button {
+      cursor: pointer;
     }
   }
 

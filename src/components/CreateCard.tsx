@@ -4,7 +4,7 @@ import Plus from "../../public/assets/Plus.svg";
 
 interface ICreateCard {
   text: string;
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 function CreateCard({ text, onClick }: ICreateCard) {

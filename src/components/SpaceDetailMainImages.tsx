@@ -6,14 +6,15 @@ import { TImages } from "./DetailImages";
 interface ISpaceDetailMainImages {
   ImagesRef: React.RefObject<HTMLDivElement>;
   imagesUrl: TImages;
+  handlerFullScreen: (imgIdx: number) => () => void;
 }
 
-function SpaceDetailMainImages({ imagesUrl, ImagesRef }: ISpaceDetailMainImages) {
+function SpaceDetailMainImages({ imagesUrl, ImagesRef, handlerFullScreen }: ISpaceDetailMainImages) {
   return (
     <Wrapper ref={ImagesRef}>
       {imagesUrl.map((image, idx) => (
         <Image key={`${image}+${idx}`}>
-          <SpaceDetailImageCard imageUrl={image} key={image} />
+          <SpaceDetailImageCard imageUrl={image} key={image} onClick={handlerFullScreen(idx)} />
         </Image>
       ))}
     </Wrapper>
